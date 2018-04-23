@@ -1,5 +1,7 @@
 package org.ssm.dufy.entity;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -7,7 +9,21 @@ public class User {
 
     private String password;
 
-    private Integer age;
+    private String name;
+
+    private String sex;
+
+    private Integer tel;
+
+    private String email;
+
+    private Date birthday;
+
+    private Boolean type;
+
+    private String description;
+
+    private Boolean delFalg;
 
     public Integer getId() {
         return id;
@@ -33,11 +49,67 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public String getName() {
+        return name;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public Integer getTel() {
+        return tel;
+    }
+
+    public void setTel(Integer tel) {
+        this.tel = tel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Boolean getType() {
+        return type;
+    }
+
+    public void setType(Boolean type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public Boolean getDelFalg() {
+        return delFalg;
+    }
+
+    public void setDelFalg(Boolean delFalg) {
+        this.delFalg = delFalg;
     }
 }

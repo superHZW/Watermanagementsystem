@@ -1,82 +1,178 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.ssm.dufy.dao.IUserDao" >
-  <resultMap id="BaseResultMap" type="org.ssm.dufy.entity.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ssm.dufy.dao.USERMapper">
+  <resultMap id="BaseResultMap" type="org.ssm.dufy.entity.USER">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="TEL" jdbcType="INTEGER" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+    <result column="TYPE" jdbcType="BIT" property="type" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="DEL_FALG" jdbcType="BIT" property="delFalg" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, user_name, password, age
+  <sql id="Base_Column_List">
+    ID, USER_NAME, PASSWORD, NAME, SEX, TEL, EMAIL, BIRTHDAY, TYPE, DESCRIPTION, DEL_FALG
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user_t
-    where id = #{id,jdbcType=INTEGER}
+    from sys_user
+    where ID = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user_t
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user
+    where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="org.ssm.dufy.entity.User" >
-    insert into user_t (id, user_name, password, 
-      age)
+  <insert id="insert" parameterType="org.ssm.dufy.entity.USER">
+    insert into sys_user (ID, USER_NAME, PASSWORD, 
+      NAME, SEX, TEL, EMAIL, 
+      BIRTHDAY, TYPE, DESCRIPTION, 
+      DEL_FALG)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{tel,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{type,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{delFalg,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="org.ssm.dufy.entity.User" >
-    insert into user_t
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+  <insert id="insertSelective" parameterType="org.ssm.dufy.entity.USER">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="userName != null">
+        USER_NAME,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="password != null">
+        PASSWORD,
       </if>
-      <if test="age != null" >
-        age,
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="delFalg != null">
+        DEL_FALG,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
+      <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delFalg != null">
+        #{delFalg,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.ssm.dufy.entity.User" >
-    update user_t
-    <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKeySelective" parameterType="org.ssm.dufy.entity.USER">
+    update sys_user
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="delFalg != null">
+        DEL_FALG = #{delFalg,jdbcType=BIT},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.ssm.dufy.entity.User" >
-    update user_t
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="org.ssm.dufy.entity.USER">
+    update sys_user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=CHAR},
+      TEL = #{tel,jdbcType=INTEGER},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      TYPE = #{type,jdbcType=BIT},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      DEL_FALG = #{delFalg,jdbcType=BIT}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="org.ssm.dufy.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, password, age
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

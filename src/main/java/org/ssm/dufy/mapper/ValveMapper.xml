@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ssm.dufy.dao.ValveMapper">
+  <resultMap id="BaseResultMap" type="org.ssm.dufy.entity.Valve">
+    <id column="VAV_CD" jdbcType="INTEGER" property="vavCd" />
+    <result column="NODE_CD" jdbcType="INTEGER" property="nodeCd" />
+    <result column="LGTD" jdbcType="DOUBLE" property="lgtd" />
+    <result column="LTTD" jdbcType="DOUBLE" property="lttd" />
+    <result column="VAV_NM" jdbcType="VARCHAR" property="vavNm" />
+    <result column="VAV_TYPE" jdbcType="CHAR" property="vavType" />
+    <result column="VAV_WORK" jdbcType="CHAR" property="vavWork" />
+    <result column="VAV_SIZE" jdbcType="DOUBLE" property="vavSize" />
+    <result column="MP" jdbcType="DOUBLE" property="mp" />
+    <result column="ISMP" jdbcType="CHAR" property="ismp" />
+    <result column="MAXMP" jdbcType="VARCHAR" property="maxmp" />
+    <result column="SZFD" jdbcType="CHAR" property="szfd" />
+    <result column="USER_TYPE" jdbcType="CHAR" property="userType" />
+    <result column="AZGC" jdbcType="DOUBLE" property="azgc" />
+    <result column="ISOPERATE" jdbcType="BIT" property="isoperate" />
+    <result column="STAKEMARK" jdbcType="VARCHAR" property="stakemark" />
+    <result column="KD" jdbcType="DOUBLE" property="kd" />
+    <result column="VA_OTHER_Q" jdbcType="DOUBLE" property="vaOtherQ" />
+    <result column="VA_OTHER_MP" jdbcType="DOUBLE" property="vaOtherMp" />
+    <result column="VA_OTHER_SIZE" jdbcType="DOUBLE" property="vaOtherSize" />
+    <result column="N_VALVE" jdbcType="INTEGER" property="nValve" />
+    <result column="KD_V0" jdbcType="DOUBLE" property="kdV0" />
+    <result column="AV" jdbcType="DOUBLE" property="av" />
+    <result column="NT" jdbcType="VARCHAR" property="nt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    VAV_CD, NODE_CD, LGTD, LTTD, VAV_NM, VAV_TYPE, VAV_WORK, VAV_SIZE, MP, ISMP, MAXMP, 
+    SZFD, USER_TYPE, AZGC, ISOPERATE, STAKEMARK, KD, VA_OTHER_Q, VA_OTHER_MP, VA_OTHER_SIZE, 
+    N_VALVE, KD_V0, AV, NT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prj_valve_b
+    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prj_valve_b
+    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.ssm.dufy.entity.Valve">
+    insert into prj_valve_b (VAV_CD, NODE_CD, LGTD, 
+      LTTD, VAV_NM, VAV_TYPE, VAV_WORK, 
+      VAV_SIZE, MP, ISMP, MAXMP, 
+      SZFD, USER_TYPE, AZGC, ISOPERATE, 
+      STAKEMARK, KD, VA_OTHER_Q, 
+      VA_OTHER_MP, VA_OTHER_SIZE, N_VALVE, 
+      KD_V0, AV, NT)
+    values (#{vavCd,jdbcType=INTEGER}, #{nodeCd,jdbcType=INTEGER}, #{lgtd,jdbcType=DOUBLE}, 
+      #{lttd,jdbcType=DOUBLE}, #{vavNm,jdbcType=VARCHAR}, #{vavType,jdbcType=CHAR}, #{vavWork,jdbcType=CHAR}, 
+      #{vavSize,jdbcType=DOUBLE}, #{mp,jdbcType=DOUBLE}, #{ismp,jdbcType=CHAR}, #{maxmp,jdbcType=VARCHAR}, 
+      #{szfd,jdbcType=CHAR}, #{userType,jdbcType=CHAR}, #{azgc,jdbcType=DOUBLE}, #{isoperate,jdbcType=BIT}, 
+      #{stakemark,jdbcType=VARCHAR}, #{kd,jdbcType=DOUBLE}, #{vaOtherQ,jdbcType=DOUBLE}, 
+      #{vaOtherMp,jdbcType=DOUBLE}, #{vaOtherSize,jdbcType=DOUBLE}, #{nValve,jdbcType=INTEGER}, 
+      #{kdV0,jdbcType=DOUBLE}, #{av,jdbcType=DOUBLE}, #{nt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.ssm.dufy.entity.Valve">
+    insert into prj_valve_b
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vavCd != null">
+        VAV_CD,
+      </if>
+      <if test="nodeCd != null">
+        NODE_CD,
+      </if>
+      <if test="lgtd != null">
+        LGTD,
+      </if>
+      <if test="lttd != null">
+        LTTD,
+      </if>
+      <if test="vavNm != null">
+        VAV_NM,
+      </if>
+      <if test="vavType != null">
+        VAV_TYPE,
+      </if>
+      <if test="vavWork != null">
+        VAV_WORK,
+      </if>
+      <if test="vavSize != null">
+        VAV_SIZE,
+      </if>
+      <if test="mp != null">
+        MP,
+      </if>
+      <if test="ismp != null">
+        ISMP,
+      </if>
+      <if test="maxmp != null">
+        MAXMP,
+      </if>
+      <if test="szfd != null">
+        SZFD,
+      </if>
+      <if test="userType != null">
+        USER_TYPE,
+      </if>
+      <if test="azgc != null">
+        AZGC,
+      </if>
+      <if test="isoperate != null">
+        ISOPERATE,
+      </if>
+      <if test="stakemark != null">
+        STAKEMARK,
+      </if>
+      <if test="kd != null">
+        KD,
+      </if>
+      <if test="vaOtherQ != null">
+        VA_OTHER_Q,
+      </if>
+      <if test="vaOtherMp != null">
+        VA_OTHER_MP,
+      </if>
+      <if test="vaOtherSize != null">
+        VA_OTHER_SIZE,
+      </if>
+      <if test="nValve != null">
+        N_VALVE,
+      </if>
+      <if test="kdV0 != null">
+        KD_V0,
+      </if>
+      <if test="av != null">
+        AV,
+      </if>
+      <if test="nt != null">
+        NT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vavCd != null">
+        #{vavCd,jdbcType=INTEGER},
+      </if>
+      <if test="nodeCd != null">
+        #{nodeCd,jdbcType=INTEGER},
+      </if>
+      <if test="lgtd != null">
+        #{lgtd,jdbcType=DOUBLE},
+      </if>
+      <if test="lttd != null">
+        #{lttd,jdbcType=DOUBLE},
+      </if>
+      <if test="vavNm != null">
+        #{vavNm,jdbcType=VARCHAR},
+      </if>
+      <if test="vavType != null">
+        #{vavType,jdbcType=CHAR},
+      </if>
+      <if test="vavWork != null">
+        #{vavWork,jdbcType=CHAR},
+      </if>
+      <if test="vavSize != null">
+        #{vavSize,jdbcType=DOUBLE},
+      </if>
+      <if test="mp != null">
+        #{mp,jdbcType=DOUBLE},
+      </if>
+      <if test="ismp != null">
+        #{ismp,jdbcType=CHAR},
+      </if>
+      <if test="maxmp != null">
+        #{maxmp,jdbcType=VARCHAR},
+      </if>
+      <if test="szfd != null">
+        #{szfd,jdbcType=CHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="azgc != null">
+        #{azgc,jdbcType=DOUBLE},
+      </if>
+      <if test="isoperate != null">
+        #{isoperate,jdbcType=BIT},
+      </if>
+      <if test="stakemark != null">
+        #{stakemark,jdbcType=VARCHAR},
+      </if>
+      <if test="kd != null">
+        #{kd,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherQ != null">
+        #{vaOtherQ,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherMp != null">
+        #{vaOtherMp,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherSize != null">
+        #{vaOtherSize,jdbcType=DOUBLE},
+      </if>
+      <if test="nValve != null">
+        #{nValve,jdbcType=INTEGER},
+      </if>
+      <if test="kdV0 != null">
+        #{kdV0,jdbcType=DOUBLE},
+      </if>
+      <if test="av != null">
+        #{av,jdbcType=DOUBLE},
+      </if>
+      <if test="nt != null">
+        #{nt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.ssm.dufy.entity.Valve">
+    update prj_valve_b
+    <set>
+      <if test="nodeCd != null">
+        NODE_CD = #{nodeCd,jdbcType=INTEGER},
+      </if>
+      <if test="lgtd != null">
+        LGTD = #{lgtd,jdbcType=DOUBLE},
+      </if>
+      <if test="lttd != null">
+        LTTD = #{lttd,jdbcType=DOUBLE},
+      </if>
+      <if test="vavNm != null">
+        VAV_NM = #{vavNm,jdbcType=VARCHAR},
+      </if>
+      <if test="vavType != null">
+        VAV_TYPE = #{vavType,jdbcType=CHAR},
+      </if>
+      <if test="vavWork != null">
+        VAV_WORK = #{vavWork,jdbcType=CHAR},
+      </if>
+      <if test="vavSize != null">
+        VAV_SIZE = #{vavSize,jdbcType=DOUBLE},
+      </if>
+      <if test="mp != null">
+        MP = #{mp,jdbcType=DOUBLE},
+      </if>
+      <if test="ismp != null">
+        ISMP = #{ismp,jdbcType=CHAR},
+      </if>
+      <if test="maxmp != null">
+        MAXMP = #{maxmp,jdbcType=VARCHAR},
+      </if>
+      <if test="szfd != null">
+        SZFD = #{szfd,jdbcType=CHAR},
+      </if>
+      <if test="userType != null">
+        USER_TYPE = #{userType,jdbcType=CHAR},
+      </if>
+      <if test="azgc != null">
+        AZGC = #{azgc,jdbcType=DOUBLE},
+      </if>
+      <if test="isoperate != null">
+        ISOPERATE = #{isoperate,jdbcType=BIT},
+      </if>
+      <if test="stakemark != null">
+        STAKEMARK = #{stakemark,jdbcType=VARCHAR},
+      </if>
+      <if test="kd != null">
+        KD = #{kd,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherQ != null">
+        VA_OTHER_Q = #{vaOtherQ,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherMp != null">
+        VA_OTHER_MP = #{vaOtherMp,jdbcType=DOUBLE},
+      </if>
+      <if test="vaOtherSize != null">
+        VA_OTHER_SIZE = #{vaOtherSize,jdbcType=DOUBLE},
+      </if>
+      <if test="nValve != null">
+        N_VALVE = #{nValve,jdbcType=INTEGER},
+      </if>
+      <if test="kdV0 != null">
+        KD_V0 = #{kdV0,jdbcType=DOUBLE},
+      </if>
+      <if test="av != null">
+        AV = #{av,jdbcType=DOUBLE},
+      </if>
+      <if test="nt != null">
+        NT = #{nt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.ssm.dufy.entity.Valve">
+    update prj_valve_b
+    set NODE_CD = #{nodeCd,jdbcType=INTEGER},
+      LGTD = #{lgtd,jdbcType=DOUBLE},
+      LTTD = #{lttd,jdbcType=DOUBLE},
+      VAV_NM = #{vavNm,jdbcType=VARCHAR},
+      VAV_TYPE = #{vavType,jdbcType=CHAR},
+      VAV_WORK = #{vavWork,jdbcType=CHAR},
+      VAV_SIZE = #{vavSize,jdbcType=DOUBLE},
+      MP = #{mp,jdbcType=DOUBLE},
+      ISMP = #{ismp,jdbcType=CHAR},
+      MAXMP = #{maxmp,jdbcType=VARCHAR},
+      SZFD = #{szfd,jdbcType=CHAR},
+      USER_TYPE = #{userType,jdbcType=CHAR},
+      AZGC = #{azgc,jdbcType=DOUBLE},
+      ISOPERATE = #{isoperate,jdbcType=BIT},
+      STAKEMARK = #{stakemark,jdbcType=VARCHAR},
+      KD = #{kd,jdbcType=DOUBLE},
+      VA_OTHER_Q = #{vaOtherQ,jdbcType=DOUBLE},
+      VA_OTHER_MP = #{vaOtherMp,jdbcType=DOUBLE},
+      VA_OTHER_SIZE = #{vaOtherSize,jdbcType=DOUBLE},
+      N_VALVE = #{nValve,jdbcType=INTEGER},
+      KD_V0 = #{kdV0,jdbcType=DOUBLE},
+      AV = #{av,jdbcType=DOUBLE},
+      NT = #{nt,jdbcType=VARCHAR}
+    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+  </update>
+</mapper>
