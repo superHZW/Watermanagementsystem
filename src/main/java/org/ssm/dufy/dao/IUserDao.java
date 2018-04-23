@@ -1,17 +1,16 @@
 package org.ssm.dufy.dao;
 
-import org.ssm.dufy.entity.User;
+import org.ssm.dufy.entity.IUser;
 
 public interface IUserDao {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(User record);
+    int insert(IUser record);
+    int insertSelective(IUser record);
 
-    int insertSelective(User record);
+    IUser selectByPrimaryKey(Integer id);
 
-    User selectByPrimaryKey(Integer id);
+    int updateByPrimaryKeySelective(IUser record);
 
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(IUser record);
 }

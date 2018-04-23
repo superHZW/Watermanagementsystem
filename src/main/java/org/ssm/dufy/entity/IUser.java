@@ -1,6 +1,6 @@
 package org.ssm.dufy.entity;
 
-public class User {
+public class IUser {
     private Integer id;
 
     private String userName;
