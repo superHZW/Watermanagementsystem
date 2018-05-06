@@ -253,26 +253,20 @@
             </div>
 </nav>
 <body>
-
+<div class="col-md-10 col-sm-10" style="height: 99%;" >
     <div id="app" class="app-position">
-        <div class="app-header">
-              <div class="app-title">
-                  <h1></h1>
-              </div>
-              <div class="toolbar-container"></div>
-        </div>
         <div class="app-body">
+              <div class="toolbar-container"></div>
               <div class="stencil-container"></div>
               <div class="paper-container"></div>
               <div class="navigator-container"></div>
         </div>
-        
-
-
     </div>
+</div>
+   <div class="col-md-2 col-sm-2" style="height: 99%";>
     
+    </div>
 
-    <script type="text/javascript" src="js/Jwork.js"></script>
     <!-- Rappid/JointJS dependencies: -->
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/index.js"></script>
@@ -280,6 +274,7 @@
     <script src="js/lib/graphlib.core.js"></script>
     <script src="js/lib/dagre.core.js"></script>
     <script src="js/lib/rappid.min.js"></script>
+ 
     <!-- bootsrapjs dependencies: -->
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/bootstrap-table.js"></script>
@@ -287,13 +282,14 @@
     <script src="js/lib/bootstrap-table-zh-CN.js"></script>
     <script src="js/lib/bootstrap-table-contextmenu.js"></script>
     <script src="js/lib/bootstrap-table-editable.js"></script>
+  
     <!--easyUI.js-->
-    <script type="text/javascript" src="jquery-easyui-1.5/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/lib/easyui-lang-zh_CN.js"></script>
 
-
-
+   <!-- custom js:  -->
     <script type="text/javascript" src="js/project_manage.js"></script>
+    <script type="text/javascript" src="js/Jwork.js"></script>
 
     <!--[if IE 9]>
         <script>
@@ -308,7 +304,6 @@
     <script src="js/config/inspector.js"></script>
     <script src="js/config/stencil.js"></script>
     <script src="js/config/toolbar.js"></script>
-    <!-- <script src="js/config/sample-graphs.js"></script> -->
     <script src="js/views/main.js"></script>
     <script src="js/views/theme-picker.js"></script>
     <script src="js/models/joint.shapes.app.js"></script>
@@ -317,7 +312,7 @@
         joint.setTheme('modern');
         app = new App.MainView({ el: '#app' });
         themePicker = new App.ThemePicker({ mainView: app });
-        themePicker.render().$el.appendTo(document.body);
+        themePicker.render().$el.appendTo(document.getElementById('app'));
         // window.addEventListener('load', function() {
         //     app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
         // });

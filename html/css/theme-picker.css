@@ -14,8 +14,8 @@ file, You can obtain one at http://jointjs.com/license/rappid_v2.txt
 /*  Toolbar  */
 .joint-theme-picker {
     position: absolute;
-    bottom: 20px;
-    right: 260px;
+    bottom: 100px;
+    right: 100px;
     border-radius: 5px;
     padding: 3px 1px !important;
 }
