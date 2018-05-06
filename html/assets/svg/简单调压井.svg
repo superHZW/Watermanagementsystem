@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<!--Created with Sketsa SVG Editor (http://www.kiyut.com)-->
+<svg contentScriptType="text/ecmascript" width="40.0px" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full"
+    zoomAndPan="magnify" contentStyleType="text/css" height="60.0px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+    version="1.0">
+    <polygon fill="#0066ff" points="9.430555,15.133599 31.331274,15.252496 31.331274,33.68147 23.555872,39.626297 
+        23.555872,45.33333 16.94678,45.33333 16.94678,39.86409 9.430555,33.443672" stroke="#000000"/>
+    <line y2="10.97222" fill="none" x1="31.288084" x2="31.34568" stroke="#000000" y1="15.609188"/>
+    <line y2="10.97222" fill="none" x1="9.37884" x2="9.37884" stroke="#000000" y1="14.776911"/>
+    <line y2="50.11111" fill="none" x1="20.185184" x2="20.185184" stroke="#000000" y1="45.333332"/>
+</svg>
