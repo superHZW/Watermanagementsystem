@@ -34,6 +34,9 @@
                         </a>
                     </li>
                     <li>
+                        <a href="#" id="load">load</a>
+                    </li>
+                    <li>
                         <a data-toggle="modal" id="verify" class="dropdown-toggle" data-target="#Prjverify" href="#">
                             合理性检查
                         </a>
@@ -270,11 +273,11 @@
             </li>
         </ul>
 
-        <!---------------数据/模拟/结果，导航栏----->
+        <!--数据/模拟/结果，导航栏-->
         <div class="tab-content container-fluid "
              style="padding:0;border:1px solid #8f8f8f;height:98%;background-color:lightgray;    position: relative;">
 
-            <!---------------数据------------------->
+            <!--数据-->
             <div class="tab-pane  active" id="shuju"
                  style="padding:2px;border:1px solid #8f8f8f;height:100%; width: 100%;position:absolute;top: 0;left: 0;display: block;">
                 <div class="container-fluid" style="padding:2px;border:1px solid #8f8f8f;width: 100%;height: 33.5%;">
@@ -660,8 +663,7 @@
             themePicker = new App.ThemePicker({ mainView: app });
             themePicker.render().$el.appendTo(document.getElementById('app'));
             // window.addEventListener('load', function() {
-            //     app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
-            // });
+            app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
             </script>
         </body>
     </html>
