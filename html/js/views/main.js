@@ -531,76 +531,57 @@ function getOnlineDate(cellId, type) {
             var modifyData = [];
             //保存菜单
             $('#save').on('click', function () {
+                //----var windowFeatures = 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no';
+                //----------保存当前时间----------
+                var date = new Date();
+                var seperator1 = "-";
+                var seperator2 = ":";
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
 
                 var sendData = {
                     PRJ_CD: getPRJ_CD,
                     Graph: JSON.stringify(graph.toJSON()),
-                };
-                loadtest = sendData.Graph;
-                console.log(sendData.Graph);
+                    modifyData: JSON.stringify(modifyData),
+                    "newKey": newkey
+                }
 
-                // $.ajax({
-                //     url: url + 'saveGraph', //保存可二次编辑的json信息
-                //     type: 'post',
-                //     data: sendData,
-                //     success: function (data) {
-                //         if (data.error == "none") {
-                //             modifyData = [];
-                //             $('#devices').datagrid('reload');
-                //             $.messager.show({
-                //                 title: '提示',
-                //                 msg: '工程保存成功！'
-                //             })
-                //             newkey = data.newKey;
-                //         } else {
-                //             $.messager.show({
-                //                 title: '提示',
-                //                 msg: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
-                //             })
-                //         }
-                //     },
-                //     error: function (xhr, status, error) {
-                //         $.messager.show({
-                //             title: '提示',
-                //             msg: error
-                //         })
-                //     }
-                // });
-            });
-            $('#load').on('click', function () {
-
-                 graph.fromJSON(JSON.parse(loadtest));
-                //  // JSON.stringify(graph.toJSON()),
-                // graph.fromJSON(loadtest);
-                // // console.log(sendData.Graph);
-
-                // $.ajax({
-                //     url: url + 'saveGraph', //保存可二次编辑的json信息
-                //     type: 'post',
-                //     data: sendData,
-                //     success: function (data) {
-                //         if (data.error == "none") {
-                //             modifyData = [];
-                //             $('#devices').datagrid('reload');
-                //             $.messager.show({
-                //                 title: '提示',
-                //                 msg: '工程保存成功！'
-                //             })
-                //             newkey = data.newKey;
-                //         } else {
-                //             $.messager.show({
-                //                 title: '提示',
-                //                 msg: '啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
-                //             })
-                //         }
-                //     },
-                //     error: function (xhr, status, error) {
-                //         $.messager.show({
-                //             title: '提示',
-                //             msg: error
-                //         })
-                //     }
-                // });
+                $.ajax({
+                    url: url + 'saveGraph', //保存可二次编辑的json信息
+                    type: 'post',
+                    data: sendData,
+                    success: function (data) {
+                        if (data.error == "none") {
+                            modifyData = [];
+                            $('#devices').datagrid('reload');
+                            $.messager.show({
+                                title: '提示',
+                                msg: '工程保存成功！'
+                            })
+                            newkey = data.newKey;
+                        } else {
+                            $.messager.show({
+                                title: '提示',
+                                msg: data.error
+                            })
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $.messager.show({
+                            title: '提示',
+                            msg: error
+                        })
+                    }
+                });
             });
             // //点击计算按钮时
             // $('#checkform').on('click', function () {
