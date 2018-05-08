@@ -8,13 +8,65 @@ App.config = App.config || {};
     App.config.stencil = {};
 
     App.config.stencil.groups = {
-        wt: {
+        lj: {
             index: 1,
+            label: '通用元件'
+        },
+        wt: {
+            index: 2,
             label: '水力元件'
         },
 
+
     };
     App.config.stencil.shapes = {};
+    App.config.stencil.shapes.lj = [{
+        type: 'app.Connector',
+        modelText:'节点',
+        size: {
+            width: 20,
+            height: 20
+        },
+        attrs: {
+            '.': {
+                'data-tooltip': '节点',
+                'data-tooltip-position': 'left',
+                'data-tooltip-position-selector': '.joint-stencil'
+            },
+            circle: {
+                fill: '#EE7942',
+                'stroke-width': 2,
+                stroke: '#EE7942'
+            },
+            text: {
+                fill: 'white',
+            }
+        }
+    }, 
+        {
+            type: 'basic.Text',
+            modelType: 'text',
+            size: {
+                width: 36,
+                height: 21
+            },
+            attrs: {
+                '.': {
+                    'data-tooltip': '文本',
+                    'data-tooltip-position': 'left',
+                    'data-tooltip-position-selector': '.joint-stencil'
+                },
+                text: {
+                    text: '文本',
+                    fill: 'black',
+//                      'font-size': 20,
+                    'font-family': 'Montserrat',
+                    'font-weight': 'normal'
+                },
+            }
+        },
+
+    ],
 
     App.config.stencil.shapes.wt = [
         {

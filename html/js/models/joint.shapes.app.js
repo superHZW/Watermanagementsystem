@@ -3,7 +3,13 @@
   'use strict';
 
   joint.shapes.app = joint.shapes.app || {};
-
+  joint.shapes.app.Connector = joint.shapes.basic.Circle.extend({
+    defaults: _.defaultsDeep({
+      type: "app.Connector",
+      modelType:'node',
+    }, joint.shapes.basic.Circle.prototype.defaults)
+  });
+  
   joint.shapes.app.pipe = joint.shapes.basic.Generic.extend({
     markup: [
       '<g class="rotatable">',

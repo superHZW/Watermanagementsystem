@@ -46,6 +46,8 @@ var App = window.App || {};
             this.initializeToolbar();
             this.initializeKeyboardShortcuts();
             this.initializeTooltips();
+            this.initializeInlineTextEditor(); //文字编辑
+
         },
 
         // Create a graph, paper and wrap the paper in a PaperScroller.
@@ -442,6 +444,46 @@ var App = window.App || {};
                 direction: 'auto',
                 padding: 10
             });
+        },
+        //文字编辑
+        initializeInlineTextEditor:function () {
+            //双击鼠标时
+            this.paper.on('cell:pointerdblclick', function (cellView, evt) {
+
+                var editor = joint.ui.TextEditor.edit(evt.target, {
+                    annotateUrls: true,
+                    cellView: cellView,
+                    annotationsProperty: 'attrs/text/annotations',
+                    textProperty: 'attrs/text/text' //文字属性
+
+                    //textProperty: cellView.model.isLink() ? 'labels/0/attrs/text/text' : 'attrs/text/text'
+                });
+                if (editor) {
+                    editor.on('caret:change', updateToolbar); //改变文字时更新快捷小部件
+                    editor.on('select:changed', updateToolbar); //更改对应小部件的时候变化文字
+                }
+            });
+
+            //单击空白部分！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！当一个图元为选中状态时，完成文字编辑后单击空白，该图元还为选中状态或者是未选中状态？
+            this.paper.on('blank:pointerdown', function (cellView, evt) {
+                joint.ui.TextEditor.close();
+            });
+
+            //根据文字多少自动更新文本框大小
+            this.graph.on({
+                'change:attrs': _.bind(this.autosize, this)
+            });
+        },
+                //根据文字自动调整图元大小
+        autosize: function (element) {
+
+            var view = this.paper.findViewByModel(element);
+            view.unhighlight();
+            var text = view.$('text')[0];
+
+            var bbox = V(text).bbox(true);
+
+            element.resize(bbox.width, bbox.height);
         },
 
         exportStylesheet: [
