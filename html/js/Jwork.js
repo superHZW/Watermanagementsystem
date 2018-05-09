@@ -9,7 +9,7 @@ var getPRJ_TYPE = undefined; //获得设备类型
 var indexFz;//记录选中的仿真记录
 var cell_view = null;
 var cell_view_save = null;
-var url = '../LXBWaterAutomation/';
+var url = '../water_manage_system/';
 var option2;
 var app;
 var appp = {};

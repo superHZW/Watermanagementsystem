@@ -8,6 +8,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script src="js/lib/jquery.js"></script>
 	<style type="text/css">
 		.form-bg{
 		    padding: 2em 0;
@@ -146,13 +147,13 @@
 	                    <form class="form-horizontal">
 	                        <span class="heading">用户登录</span>
 	                        <div class="form-group">
-	                            <input type="email" class="form-control" id="inputEmail3" placeholder="电子邮件">
+	                            <input  class="form-control" id="username" placeholder="用户名">
 	                            <i class="fa fa-user"></i>
 	                        </div>
 	                        <div class="form-group help">
-	                            <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+	                            <input type="password" class="form-control" id="password" placeholder="密码">
 	                            <i class="fa fa-lock"></i>
-	                            <a href="#" class="fa fa-question-circle"></a>
+	                            
 	                        </div>
 	                        <div class="form-group">
 	                            <div class="main-checkbox">
@@ -160,7 +161,7 @@
 	                                <label for="checkbox1"></label>
 	                            </div>
 	                            <span class="text">记住我</span>
-	                            <button type="submit" class="btn btn-default">立刻登录</button>
+	                            <button type="submit" class="btn btn-default" id='loginbutton'>立刻登录</button>
 	                        </div>
 	                    </form>
 	                </div>
@@ -170,4 +171,66 @@
 	</div>
 
 </body>
+
+
+
+<script>
+function getNowFormatDate() {
+		var date = new Date();
+		var seperator1 = "-";
+		var seperator2 = ":";
+		var month = date.getMonth() + 1;
+		var strDate = date.getDate();
+		if (month >= 1 && month <= 9) {
+			month = "0" + month;
+		}
+		if (strDate >= 0 && strDate <= 9) {
+			strDate = "0" + strDate;
+		}
+		var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+				+ " " + date.getHours() + seperator2 + date.getMinutes()
+				+ seperator2 + date.getSeconds();
+		return currentdate;
+	}
+    $(document).ready(function(){
+		var url = '../water_manage_system/';
+        $("#loginbutton").click(function () {
+			var date = getNowFormatDate();
+			
+            json_data ={"username":'',"password":'',"date":date};
+            json_data.username = $("#username").val();
+            json_data.password = $("#password").val();
+          
+            $.ajax({
+                type:"POST",
+                url:url+'login',
+                dataType:"json",
+                contentType:"application/json",
+                data:JSON.stringify(json_data),
+                success:function(ret_data){
+				if(ret_data=="user_or_pass_error"){
+                      $.messager.show({
+                        title:'警告',
+                        msg:'账号或密码错误！'
+                    });
+                   
+                    alert("账号或密码错误！");
+					return ;
+				}else if(ret_data=="forbidden"){
+					alert("帐号被禁用");
+				}else{
+
+						sessionStorage.setItem("id",ret_data);
+						sessionStorage.setItem("username",json_data.username);
+						window.location.href="index.html";
+                    }
+                },
+                error: function(){
+                }
+            });
+        })
+
+    });
+      
+</script>
 </html>
