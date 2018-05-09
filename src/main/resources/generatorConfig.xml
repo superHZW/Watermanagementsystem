@@ -13,22 +13,23 @@
      
       <!--数据库链接URL，用户名、密码 -->      
      <jdbcConnection  driverClass="com.mysql.jdbc.Driver"
-         connectionURL="jdbc:mysql://localhost:3306/watermanage"  userId="root"  password="root"/>
+         connectionURL="jdbc:mysql://localhost:3306/water_manage_system"  userId="root"  password="123456-"/>
       
       <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
     <javaTypeResolver >
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
+
       <!--自动生成的实体的存放包路径 -->
-      <javaModelGenerator  targetPackage="org.ssm.dufy.entity"
+      <javaModelGenerator  targetPackage="com.zhwx.wms.entity"
          targetProject="src/main/java">
         <property  name="enableSubPackages"  value="true"/>
           <property  name="trimStrings"  value="true"/>
       </javaModelGenerator>
 
       <!--自动生成的*Mapper.xml文件存放路径 -->
-      <sqlMapGenerator  targetPackage="org.ssm.dufy.mapper"
+      <sqlMapGenerator  targetPackage="com.zhwx.wms.mapper"
           targetProject="src/main/java">
         <property  name="enableSubPackages"  value="true"/>
       </sqlMapGenerator>
@@ -36,10 +37,17 @@
       <!--自动生成的*Dao.java存放路径 -->
 
       <javaClientGenerator type="XMLMAPPER"
-         targetPackage="org.ssm.dufy.dao"  targetProject="src/main/java">
+         targetPackage="com.zhwx.wms.dao"  targetProject="src/main/java">
         <property  name="enableSubPackages"  value="true"/>
       </javaClientGenerator>
 
+    <!--  
+    <table tableName="tb_student" domainObjectName="Stu"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    
+    <table tableName="user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    
     <table tableName="sys_user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
      <table tableName="prj_intakesump_b" domainObjectName="Intakesump"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
@@ -50,7 +58,13 @@
     </table>
     <table tableName="prj_valve_b" domainObjectName="Valve"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
-
+    <table tableName="test" domainObjectName="test"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="prj" domainObjectName="Project"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    -->
+    <table tableName="prj_graph" domainObjectName="Prjgraph"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
    </context>
 
 </generatorConfiguration>

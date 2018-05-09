@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhwx.wms.dao.PrjgraphMapper">
+  <resultMap id="BaseResultMap" type="com.zhwx.wms.entity.Prjgraph">
+    <id column="CELL_ID" jdbcType="VARCHAR" property="cellId" />
+    <result column="PRJ_ID" jdbcType="VARCHAR" property="prjId" />
+    <result column="PRIOR_CELL_ID" jdbcType="VARCHAR" property="priorCellId" />
+    <result column="NEXT_CELL_ID" jdbcType="VARCHAR" property="nextCellId" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CELL_ID, PRJ_ID, PRIOR_CELL_ID, NEXT_CELL_ID, COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prj_graph
+    where CELL_ID = #{cellId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from prj_graph
+    where CELL_ID = #{cellId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhwx.wms.entity.Prjgraph">
+    insert into prj_graph (CELL_ID, PRJ_ID, PRIOR_CELL_ID, 
+      NEXT_CELL_ID, COMMENTS)
+    values (#{cellId,jdbcType=VARCHAR}, #{prjId,jdbcType=VARCHAR}, #{priorCellId,jdbcType=VARCHAR}, 
+      #{nextCellId,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhwx.wms.entity.Prjgraph">
+    insert into prj_graph
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cellId != null">
+        CELL_ID,
+      </if>
+      <if test="prjId != null">
+        PRJ_ID,
+      </if>
+      <if test="priorCellId != null">
+        PRIOR_CELL_ID,
+      </if>
+      <if test="nextCellId != null">
+        NEXT_CELL_ID,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cellId != null">
+        #{cellId,jdbcType=VARCHAR},
+      </if>
+      <if test="prjId != null">
+        #{prjId,jdbcType=VARCHAR},
+      </if>
+      <if test="priorCellId != null">
+        #{priorCellId,jdbcType=VARCHAR},
+      </if>
+      <if test="nextCellId != null">
+        #{nextCellId,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhwx.wms.entity.Prjgraph">
+    update prj_graph
+    <set>
+      <if test="prjId != null">
+        PRJ_ID = #{prjId,jdbcType=VARCHAR},
+      </if>
+      <if test="priorCellId != null">
+        PRIOR_CELL_ID = #{priorCellId,jdbcType=VARCHAR},
+      </if>
+      <if test="nextCellId != null">
+        NEXT_CELL_ID = #{nextCellId,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CELL_ID = #{cellId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhwx.wms.entity.Prjgraph">
+    update prj_graph
+    set PRJ_ID = #{prjId,jdbcType=VARCHAR},
+      PRIOR_CELL_ID = #{priorCellId,jdbcType=VARCHAR},
+      NEXT_CELL_ID = #{nextCellId,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR}
+    where CELL_ID = #{cellId,jdbcType=VARCHAR}
+  </update>
+</mapper>

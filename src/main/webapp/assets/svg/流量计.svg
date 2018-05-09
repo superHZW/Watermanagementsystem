@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!--Created with Sketsa SVG Editor (http://www.kiyut.com)-->
+<svg contentScriptType="text/ecmascript" width="40.0px" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full"
+    zoomAndPan="magnify" contentStyleType="text/css" height="60.0px" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+    version="1.0">
+    <ellipse rx="13.666672" fill="none" ry="14.055553" cx="20.11111" cy="23.277777" stroke="#0066ff"/>
+    <line y2="36.888893" fill="none" x1="19.510283" x2="19.46913" y1="52.555546" stroke="#0066ff"/>
+    <ellipse transform="matrix(0.99122036 0.1322198 -0.1322198 0.99122036 3.2963078 -2.5500457)" fill="none" rx="3.7380543"
+        cx="19.833946" ry="7.0287056" cy="23.078552" stroke="#0066ff"/>
+    <line transform="matrix(0.99122036 0.1322198 -0.1322198 0.99122036 3.2963078 -2.5500457)" fill="none" x1="21.012949"
+        x2="25.294493" y1="25.59421" y2="29.443743" stroke="#0066ff"/>
+</svg>

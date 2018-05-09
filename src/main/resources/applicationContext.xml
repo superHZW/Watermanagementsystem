@@ -13,12 +13,39 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	        <property name="locations" value="classpath:jdbc.properties"/>
 	</bean>
-
+ 
 	<!-- 2.扫描的包路径，这里不扫描被@Controller注解的类 --><!--使用<context:component-scan/> 可以不在配置<context:annotation-config/> -->
-	<context:component-scan base-package="org.ssm.dufy">
+	<!-- dao根路径 -->
+	<context:component-scan base-package="com.zhwx.wms.dao">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	
+	<!-- 数据库连接的配置文件 -->
 	<import resource="classpath:spring-mybatis.xml" />
 	
+	<!-- 服务类的配置文件 -->
+	<import resource="classpath:spring-mvc.xml" />
+	
+	<!-- Bean 对象的配置信息 -->
+	<import resource="classpath:bean.xml" />
+	<!-- 
+<?xml version="1.0" encoding="UTF-8" ?>     
+	<beans xmlns="http://www.springframework.org/schema/beans"    
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans      
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">     
+    <bean id="boss" class="com.baobaotao.Boss">     
+        <property name="car" ref="car"/>     
+        <property name="office" ref="office" />     
+    </bean>     
+    <bean id="office" class="com.baobaotao.Office">     
+        <property name="officeNo" value="002"/>     
+    </bean>     
+    <bean id="car" class="com.baobaotao.Car" scope="singleton">     
+        <property name="brand" value=" 红旗 CA72"/>     
+        <property name="price" value="2000"/>     
+    </bean>     
+</beans>   
+	 -->	
 </beans>
