@@ -10,16 +10,19 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    ">
      
     <!-- 扫描controller（controller层注入） -->
-   <context:component-scan base-package="org.ssm.dufy.web" use-default-filters="false">
+    <context:component-scan base-package="com.zhwx.wms.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-   
-     <mvc:annotation-driven />
+        
+    <mvc:annotation-driven />
 
-      <!-- 内容协商管理器  -->
+    <!-- 内容协商管理器  -->
     <!--1、首先检查路径扩展名（如my.pdf）；2、其次检查Parameter（如my?format=pdf）；3、检查Accept Header-->
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
         <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
@@ -32,7 +35,7 @@
 
         <property name="mediaTypes"> <!--扩展名到MIME的映射；favorPathExtension, favorParameter是true时起作用  -->
             <value>
-                json=application/json
+                json=application/json 
                 xml=application/xml
                 html=text/html
             </value>
@@ -46,11 +49,15 @@
     <mvc:default-servlet-handler />  
 	<!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
-   
+    
+    <!-- 对模型视图添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+	<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 --> 
+	<property name="prefix" value="/WEB-INF/jsp/" /> 
+	<property name="suffix" value=".jsp" /> 
+	</bean>
 
-   <!-- 对模型视图添加前后缀 -->
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-      p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
-      
+    <!--    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/> -->
+
 
 </beans>
