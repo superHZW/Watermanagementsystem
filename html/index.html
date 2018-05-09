@@ -49,10 +49,6 @@
                     <li>
                         <a data-toggle="modal" id="project" class="dropdown-toggle" data-target="#projectManage" href="#">工程管理</a>
                     </li>
-                    <!--帮助-->
-                    <li>
-                        <a data-toggle="modal" id="helpLi" class="dropdown-toggle" data-target="#help" href="#">帮助</a>
-                    </li>
                     <!--用户信息-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">用户名<strong class="caret"></strong></a>
@@ -86,28 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <!--帮助弹出框-->
-                <div id="help" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="helpLabel">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span
-                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h5 class="modal-title">帮助</h5>
-                                </div>
-                                <div class="modal-body">
-                                    &nbsp;&nbsp;版本号：水力仿真计算1.0</br>
-                                    &nbsp;&nbsp;使用技术：springMVC+easyui+SVG</br>
-                                    &nbsp;&nbsp;使用对象：水力计算人员</br>
-                                    &nbsp;&nbsp;详情请查阅帮助文档&nbsp;
-                                    <button><a href="help.pdf">打开</a></button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
                     <!-- 工程管理 -->
                     <div id="projectManage" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
                         aria-labelledby="helpLabel">
@@ -343,6 +318,42 @@
                             </label>
                         </div>
 
+                    </div>
+
+                     <!--设备匹配摸态框-->
+                    <div id="TandDevice" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="TandDevice-Label"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                            class="sr-only">Close</span></button>
+                                    <h5 class="modal-title" id="TandDevice-title">设备匹配</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="margin-bottom: 5px" style="align-content: center">
+                                        <span>图元名称:</span>
+                                        <input id="T_name" class="textbox" disabled="true" value="">
+                                        <span>当前匹配设备名称:</span>
+                                        <input id="TA_name" class="textbox" disabled="true" value="">
+                                    </div>
+                                    <table id="TandD_table" class="easyui-datagrid">
+
+                                    </table>
+                                    <div id="TandD_tb">
+
+                                        &nbsp;<span>设备名称:</span>
+                                        <input id="TandD_PEL_NM" class="textbox">
+
+                                        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="SearchDEV()">Search</a>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" onclick="mapping()">确定匹配</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div style="height:80%;">
@@ -663,7 +674,7 @@
             themePicker = new App.ThemePicker({ mainView: app });
             themePicker.render().$el.appendTo(document.getElementById('app'));
             // window.addEventListener('load', function() {
-            app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
+            //app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
             </script>
         </body>
     </html>
