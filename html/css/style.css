@@ -128,7 +128,7 @@ body {
 /*  Inspector  */
 .inspector-container {
     position: absolute;
-    top: 50px;
+    top: 0;
     right: 0;
     bottom: 120px; /* navigator height */
     width: 240px;

@@ -51,6 +51,277 @@ var type={
 };
 
 
+
+//设备匹配出现的表格
+$(function () {
+
+    $('#TandDevice').on('shown.bs.modal', function () {
+        if (cell_view != null && cell_view.model.get('type') != 'basic.Text') {
+            document.getElementById("T_name").value = cell_view.model.toJSON().modelText;
+            // 获取当前图元匹配的设备名称...
+            var objcd = cell_view.model.toJSON().id
+            $.ajax({
+                type: 'post',
+                url: url + 'matchOrNot',
+                data: {
+                    OBJ_CD: objcd.substring(0, 8) + objcd.substring(9, 13) + objcd.substring(14, 18) + objcd.substring(19, 23) + objcd.substring(24, 36),
+                },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    document.getElementById("TA_name").value = data;
+                },
+                error: function (errorMsg) {
+                }
+            });debugger
+            $('#TandD_table').datagrid({
+                width: 570,
+                height: 349,
+                url: url + 'getRealByType',
+                method: 'post',
+                singleSelect: true,
+                collapsible: true, //按钮可折叠
+                rownumbers: true, //行号
+                pagination: true, //分页
+                pageSize: 10,
+                pageList: [10, 20, 30, 40, 50],
+                pageNumber: 1,
+                queryParams: {
+                    PRJ_TYPE: cell_view.model.toJSON().modelType
+                    //PRJ_TYPE:$('#devices').datagrid('getSelected').PRJ_TYPE
+                }, //其余发送到服务器的参数
+                //设置默认的排列
+                //sortName:'PEL_NM',
+                //sortOrder:'ASC',
+                remoteSort: true, // true时服务器进行排序
+                //multiSort:true, 多列排序,一般设置为false
+
+                fitColumns: true, //各列宽度自适应
+                toolbar: '#TandD_tb',
+                columns: [
+                    [{
+                        field: 'DEVICE_NM',
+                        title: '设备名称',
+                        width: 30,
+                        align: 'center',
+                        sortable: true //可排序
+                    },
+                        {
+                            field: 'DEVICE_CD',
+                            title: '设备编码',
+                            width: 60, //DEVICE_CD
+                            align: 'center'
+                            //editor:{
+                            //    type:'validatebox',
+                            //    options:{
+                            //        required:true,
+                            //    },
+                            //},
+                        },
+                    ]
+                ],
+                //双击获取设备属性
+                onDblClickRow: function (rowIndex, rowData) {
+                    $.ajax({
+                        type: 'get',
+                        url: url + 'getTdata',
+                        data: {
+                            DEVICE_CD: rowData.DEVICE_CD,
+                            //PRJ_TYPE:rowData.PRJ_TYPE,
+                            //PRJ_TYPE:$('#TandD_table').datagrid('getSelected').PRJ_TYPE,
+                            PRJ_TYPE: cell_view.model.toJSON().modelType
+                        },
+                        beforeSend: function () {
+                            $('#devicemanagement').datagrid('loading');
+                        },
+                        success: function (data) {
+                            if (data) {
+                                $('#devicemanagement').datagrid('loaded');
+                                if (data.success) {
+                                    $.messager.show({
+                                        title: '提示',
+                                        msg: data.data,
+                                        height: '200px',
+                                        style: {
+                                            left: '',
+                                            right: 0,
+                                            top: '',
+                                            bottom: 0
+                                        }
+                                    })
+                                }
+                                ;
+                                if (!data.success) {
+                                    $.messager.alert({
+                                        title: '提示',
+                                        msg: data.errormsg,
+                                    })
+                                }
+                            }
+                        },
+                        error: function (errorMsg) {
+                            $.messager.alert({
+                                title: '提示',
+                                msg: '获取失败！',
+                            })
+                        }
+                    });
+                },
+            });
+        } else {
+            $('#TandD_table').datagrid('loadData', {total: 0, rows: []});
+        }
+    })
+});
+
+//查找
+function SearchDEV() {
+    $('#TandD_table').datagrid('load', {
+        DEVICE_NM: $.trim($('#TandD_PEL_NM').val()),
+        PRJ_TYPE: type[cell_view.model.toJSON().modelType]
+    });
+};
+
+//确定匹配函数
+function mapping() {
+
+    //检测是否能够匹配//BySong
+    if (modifyData.length > 0) {
+        for (var i = 0; i < modifyData.length; i++) {
+            if (modifyData[i].type == "addDevice" && modifyData[i].data.OBJ_CD == cell_view.model.toJSON().id) {
+                $.messager.alert("操作提示", "这个图元尚未保存到数据库中，无法匹配");
+                return;
+            }
+        }
+
+    }
+
+
+    if ($('#TandD_table').datagrid('getSelected')) {
+        $('#TandD_table').datagrid('loading');
+        var objcd = cell_view.model.toJSON().id
+        $.ajax({
+            type: 'post',
+            url: url + 'updatehob',
+            data: {
+                OBJ_CD: objcd.substring(0, 8) + objcd.substring(9, 13) + objcd.substring(14, 18) + objcd.substring(19, 23) + objcd.substring(24, 36),
+                DEVICE_CD: $('#TandD_table').datagrid('getSelected').DEVICE_CD,
+                DEVICE_NM: $('#TandD_table').datagrid('getSelected').DEVICE_NM
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                //匹配成功则不能添加属性
+                document.getElementById("inserT").disabled = "true";
+                document.getElementById("modifyT").disabled = undefined;
+                if (data) {
+                    $('#TandD_table').datagrid('loaded');
+                    if (data.success) {
+                        $.messager.show({
+                            title: '提示',
+                            msg: '匹配成功'
+
+                        });
+                        // 需添加代码刷新表格
+                        var cellId = cell_view.model.toJSON().id; //图元id
+                        var type = cell_view.model.toJSON().modelType; //图元类型
+                        var sendData = {
+                            PRJ_TYPE: type,
+                            OBJ_CD: cellId.substring(0, 8) + cellId.substring(9, 13) + cellId.substring(14, 18) + cellId.substring(19, 23) + cellId.substring(24, 36)
+                        };
+                        $.ajax({
+                            type: 'post',
+                            url: url + 'matchOrNot',
+                            data: {
+                                OBJ_CD: cellId.substring(0, 8) + cellId.substring(9, 13) + cellId.substring(14, 18) + cellId.substring(19, 23) + cellId.substring(24, 36),
+                            },
+                            beforeSend: function () {
+                            },
+                            success: function (data) {
+                                document.getElementById("valueT").disabled = "true";
+                                $.ajax({
+                                    type: 'post',
+                                    url: url + 'getRealdata',
+                                    data: sendData,
+                                    beforeSend: function () {
+                                    },
+                                    success: function (data) {
+                                        Remove();
+
+                                        var tagElements = data.modify;
+                                        var form = document.getElementById("property");
+                                        var propertyNew = cell_view.model.toJSON().property;
+
+                                        for (var i = 0; i < data.modify.length; i++) {
+                                            if (data.modify[i].unit) {
+                                                //动态加载设备真实属性
+                                                $("#property").append('<div class="input-group">' +
+                                                    '<label class="input-group-addon" for="property_data' + i + '" style="width: 5%">' + data.modify[i].name + '</label>' +
+                                                    '<input name="' + data.modify[i].Ename + '"type="text" class="form-control" id="property_data' + i + '" placeholder="' + data.modify[i].value + '" disabled="true">' +
+                                                    '<span class="input-group-addon" style="width: 5%">' + data.modify[i].unit + '</span>' +
+                                                    '</div>');
+                                            }
+                                            if (!data.modify[i].unit) {
+                                                $("#property").append('<div class="input-group">' +
+                                                    '<label class="input-group-addon" for="property_data' + i + '"style="width: 5%">' + data.modify[i].name + '</label>' +
+                                                    '<input name="' + data.modify[i].Ename + '" type="text" class="form-control" id="property_data' + i + '" placeholder="' + data.modify[i].value + '" disabled="true">' +
+                                                    '<span class="input-group-addon" style="width: 5%"></span>' +
+                                                    '</div>');
+                                            }
+                                        }
+
+                                        for (var i = 0; i < data.modifyLine.length; i++) {
+                                            $("#property").append('<div class="input-group">' +
+                                                '<label class="input-group-addon" for="property_line' + i + '" style="width: 5%">' + data.modifyLine[i].name + '</label>' +
+                                                '<input type="text" class="form-control" id="property_line' + i + '" placeholder="' + data.modifyLine[i].Ename + '" disabled="true">' +
+                                                '<span class="input-group-addon" style="width: 5%">' +
+                                                '<button  type="button" data-toggle="modal" data-target="#onecomLine" onclick="getonlinedataline(' + i + ')">' +
+                                                'Go!' +
+                                                '</button>' +
+                                                '</span>' +
+                                                '</div>');
+                                        }
+                                        //保存在图元里面
+                                        for (var j = 0; j < tagElements.length; j++) {
+
+                                            if (propertyNew.modify[j] != undefined) {
+                                                propertyNew.modify[j].value = tagElements[j].value;
+                                            }
+                                        }
+                                        cell_view.model.prop('property', propertyNew);
+                                    },
+                                })
+                            }
+                        });
+                    }
+
+
+                    if (!data.success) {
+                        $.messager.alert({
+                            title: '提示',
+                            msg: data.errormsg
+                        });
+                    }
+
+                    document.getElementById("TA_name").value = $('#TandD_table').datagrid('getSelected').DEVICE_NM;
+                    $('#devices').datagrid('reload');
+                    selectobj();
+
+                }
+            },
+            error: function (errorMsg) {
+                $('#TandD_table').datagrid('loaded');
+
+                $.messager.alert({
+                    title: '提示',
+                    msg: errorMsg.statusText,
+                })
+            }
+        });
+    }
+};
+
+
 //-------------------------修改密码-------------------------
 function getNowFormatDate() {
     var date = new Date();
@@ -74,7 +345,7 @@ $(document).ready(function () {
     username = sessionStorage.getItem("username", null);
     if (username == null) {
            alert("请重新登录");
-        window.location = "#";
+        window.location = "login.html";
     };
     $("#username").val(username);
     //登出

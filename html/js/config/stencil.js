@@ -22,6 +22,7 @@ App.config = App.config || {};
     App.config.stencil.shapes = {};
     App.config.stencil.shapes.lj = [{
         type: 'app.Connector',
+        modelText:'节点',
         size: {
             width: 20,
             height: 20
@@ -44,6 +45,7 @@ App.config = App.config || {};
     }, 
         {
             type: 'basic.Text',
+            modelType: 'text',
             size: {
                 width: 36,
                 height: 21
@@ -94,7 +96,7 @@ App.config = App.config || {};
             type: 'devs.MyValueb',
             inPorts:['进口'],
             outPorts:['出口'],
-        }, 
+        },      
     ];
 
 })();
