@@ -168,7 +168,7 @@ $(function () {
                     });
                 },
             });
-        } else {debugger 
+        } else {
             $('#TandD_table').datagrid('loadData', {total: 0, rows: []});
         }
     })
@@ -320,6 +320,121 @@ function mapping() {
         });
     }
 };
+
+
+//-------------------------修改密码-------------------------
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+        " " + date.getHours() + seperator2 + date.getMinutes() +
+        seperator2 + date.getSeconds();
+    return currentdate;
+}
+$(document).ready(function () {
+
+    username = sessionStorage.getItem("username", null);
+    if (username == null) {
+           alert("请重新登录");
+        window.location = "login.html";
+    };
+    $("#username").val(username);
+    //登出
+    logout = function () {
+        id = sessionStorage.getItem("id");
+        date = getNowFormatDate();
+        json_data = {"id": id, "date": date};
+        //移除session
+        sessionStorage.removeItem("id");
+        sessionStorage.removeItem("username");
+        $.ajax({
+            type: "POST",
+            url: url + "logout",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(json_data),
+            success: function (ret_data) {
+                if (ret_data == "failed_update_date") {
+                    alert("更新日期失败");
+                } else {
+                    window.location = "home.html";
+                }
+            },
+            error: function () {
+                alert("更新日期失败");
+            }
+        });
+    };
+    $("#btn_modify_password").click(function () {
+        if ($("#password").val() != $("#confirm").val()) {
+
+            $.messager.alert({
+                title: '警告',
+                msg: '两次输入密码不一样！！'
+            });
+            return;
+        }
+        ;
+        password = $("#password").val();
+        id = sessionStorage.getItem("id", null);
+        pastpassword = $('#pastpassword').val();
+        if (id == null || password == null) {
+            $.messager.alert({
+                title: '警告',
+                msg: '错误,ID或者密码为空！'
+            });
+            // alert(id);
+            // alert(password);
+            return;
+        }
+        json_data = {"id": id, "password": password, "pastpassword": pastpassword};
+        $.ajax({
+            type: "POST",
+            url: url + "updatepassword",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(json_data),
+            success: function (ret_data) {
+                if (ret_data == "old_error") {
+                    $.messager.alert({
+                        title: '警告',
+                        msg: '旧密码错误，请重试！'
+                    });
+                    return;
+                } else if (ret_data == "failed_modify_password") {
+                    $.messager.alert({
+                        title: '警告',
+                        msg: '密码修改失败，请重试！'
+                    });
+                } else {
+                    $('#user-management').modal('toggle');
+                    $.messager.show({
+                        title: '提示',
+                        msg: '密码修改成功。'
+                    });
+                }
+            },
+            error: function () {
+                $.messager.alert({
+                    title: '警告',
+                    msg: '密码修改失败，请重试！'
+                });
+            }
+        });
+
+    })
+
+});
+
 
 
 
