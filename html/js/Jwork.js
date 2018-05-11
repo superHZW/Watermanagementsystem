@@ -57,6 +57,7 @@ $(function () {
 
     $('#TandDevice').on('shown.bs.modal', function () {
         if (cell_view != null && cell_view.model.get('type') != 'basic.Text') {
+            
             document.getElementById("T_name").value = cell_view.model.toJSON().modelText;
             // 获取当前图元匹配的设备名称...
             var objcd = cell_view.model.toJSON().id
@@ -73,7 +74,7 @@ $(function () {
                 },
                 error: function (errorMsg) {
                 }
-            });debugger
+            });
             $('#TandD_table').datagrid({
                 width: 570,
                 height: 349,
@@ -344,8 +345,8 @@ $(document).ready(function () {
 
     username = sessionStorage.getItem("username", null);
     if (username == null) {
-           alert("请重新登录");
-        window.location = "login.html";
+        //    alert("请重新登录");
+        // window.location = "login.html";
     };
     $("#username").val(username);
     //登出
@@ -434,6 +435,9 @@ $(document).ready(function () {
     })
 
 });
+
+
+
 
 
 
