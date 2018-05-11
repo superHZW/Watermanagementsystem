@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Rappid Demo Application</title>
+        <title>Demo Application</title>
         <!-- Joint CSS  -->
         <link rel="stylesheet" type="text/css" href="css/rappid.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -32,9 +32,6 @@
                         <a href="#" id="save">
                             保存工程图
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" id="load">load</a>
                     </li>
                     <li>
                         <a data-toggle="modal" id="verify" class="dropdown-toggle" data-target="#Prjverify" href="#">
@@ -83,598 +80,242 @@
                     </div>
                 </div>
                 
-                    <!-- 工程管理 -->
-                    <div id="projectManage" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
-                        aria-labelledby="helpLabel">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span
-                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title">工程管理</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="panel panel-default">
-                                            <div id="toolbarProject" class="btn-group">
-                                                <button id="btn_add" type="button" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建工程
-                                                </button>
-                                                <button id="btn_delete" type="button" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-                                                </button>
-                                            </div>
-                                            <table id="tb_projects">
-                                            </table>
+                <!-- 工程管理 -->
+                <div id="projectManage" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                    aria-labelledby="helpLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">工程管理</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel panel-default">
+                                        <div id="toolbarProject" class="btn-group">
+                                            <button id="btn_add" type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建工程
+                                            </button>
+                                            <button id="btn_delete" type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                                            </button>
                                         </div>
+                                        <table id="tb_projects">
+                                        </table>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--新建工程弹出框-->
-                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-                            id="addModal">
-                            <div class="modal-dialog modal-sm" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                                    class="sr-only">Close</span></button>
-                                    <h4 class="modal-title">输入工程文件名</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" id="projectName">
-                                        <!--</div>-->
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" id="createNew">确定新建</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--确认删除工程图-->
-                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-                        id="deleteModal">
+                    <!--新建工程弹出框-->
+                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+                        id="addModal">
                         <div class="modal-dialog modal-sm" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <h3><span class="label label-warning">确认删除？</span></h3>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" id="deleteYes">确认删除</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--工程右键选项-->
-                    <ul id="context-menu" class="dropdown-menu">
-                        <li data-item="edit">
-                            <a>编辑</a>
-                        </li>
-                        <li data-item="delete">
-                            <a>删除</a>
-                        </li>
-                    </ul>
-                    <!--重设密码弹出框-->
-                    <div id="user-management" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="user-management-Label"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                                 class="sr-only">Close</span></button>
-                                <h5 class="modal-title" id="user-management-title">账号管理</h5>
+                                <h4 class="modal-title">输入工程文件名</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="username" class="cols-sm-2 control-label">用户名</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-user" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="username" id="username" value=""
-                                            disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pastpassword" class="cols-sm-2 control-label">原密码</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control" name="password" id="pastpassword"
-                                            placeholder="Enter your Password"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="cols-sm-2 control-label">新密码</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control" name="password" id="password"
-                                            placeholder="Enter your Password"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirm" class="cols-sm-2 control-label">再次输入密码</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control" name="confirm" id="confirm"
-                                            placeholder="Confirm your Password"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" id="btn_modify_password">确定修改</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <div class="col-md-9 col-sm-9" style="height: 99%;" >
-                <div id="app" class="app-position">
-                    <div class="app-body">
-                        <div class="toolbar-container"></div>
-                        <div class="stencil-container"></div>
-                        <div class="paper-container"></div>
-<!--                         <div class="inspector-container"></div> -->
-                        <div class="navigator-container"></div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-    <!---------------------右侧3格栅栏-------------------->
-    <div class="col-md-3 col-sm-3 tabbable " style="height:99%;padding-top: 50px;" id="Main_work">
-        <ul class="nav nav-tabs container-fluid " style="background-color: lightgray;text-align: center;">
-            <li class="active" style="width: 33.3%">
-                <a href="#shuju" data-toggle="tab" onclick="shuju()">数据</a>
-            </li>
-            <li style="width: 33.3%">
-                <a href="#moni" id="mode" data-toggle="tab">模拟</a>
-            </li>
-            <li style="width: 33.3%">
-                <a href="#jieguo" id="result" data-toggle="tab">结果</a>
-            </li>
-        </ul>
-
-        <!--数据/模拟/结果，导航栏-->
-        <div class="tab-content container-fluid "
-             style="padding:0;border:1px solid #8f8f8f;height:98%;background-color:lightgray;    position: relative;">
-
-            <!--数据-->
-            <div class="tab-pane  active" id="shuju"
-                 style="padding:2px;border:1px solid #8f8f8f;height:100%; width: 100%;position:absolute;top: 0;left: 0;display: block;">
-                <div class="container-fluid" style="padding:2px;border:1px solid #8f8f8f;width: 100%;height: 33.5%;">
-
-                    <table id="devices" class="easyui-datagrid">
-
-                    </table>
-                    <div id="tool">
-                        <span>设备类型:</span>
-                        <select id="PRJ_cdd" class="easyui-combobox " style="width:70px;">
-
-                            <option value="" selected="selected">ALL</option>
-                            <option value="2">管道</option>
-                            <option value="1">隧洞</option>
-                            <option value="24">弯头</option>
-                            <option value="22">节点</option>
-                            <option value="3">球阀</option>
-                            <option value="4">蝶阀</option>
-                            <option value="5">调流阀</option>
-                            <option value="6">超压泄压阀</option>
-                            <option value="7">空气阀</option>
-                            <option value="8">平面闸门</option>
-                            <option value="9">弧面闸门</option>
-                            <option value="10">调压井</option>
-                            <option value="23">连接井</option>
-                            <option value="11">配水站</option>
-                            <option value="12">取水口</option>
-                            <option value="13">溢流井</option>
-                            <option value="14">分水口</option>
-                            <option value="15">进水池</option>
-                            <option value="16">出水池</option>
-                            <option value="17">围堰</option>
-                            <option value="18">电站</option>
-                            <option value="19">水轮机</option>
-                            <option value="20">压力计</option>
-                            <option value="21">流量计</option>
-                            >
-                        </select>
-                        <span>对象名称:</span><input id="PEL_NMM" class="textbox" style="width: 70px">
-                        <a href="#" class="easyui-linkbutton" onclick="doSearchOBJ()">Search</a>
-                    </div>
-                </div>
-
-                <!--选择设备类型，然后选择一个对象-->
-                <div class="container-fluid" style="padding:2px;border:1px;height:66%;">
-
-                    <div id="data-type" style="text-align: center;width: 100%;margin-bottom: 3px">
-                        <div class="form-group monicss container-fluid">
-                            <select id="data-type-one" data-toggle="select"
-                                    class="form-control select select-primary mrs mbm" onchange="datatypeone(this)">
-                                <option value="0" selected="true">设备属性</option>
-                                <option value="1">设备计算结果</option>
-                                <option value="2">仿真参数</option>
-                            </select>
-                        </div>
-                        <div id="hidee">
-                            <button id="hideee" visible="true" class="btn btn-sm btn-danger" data-toggle="modal"
-                                    data-target="#TandDevice">匹配
-                            </button>
-                            <label id="dataonline" disabled="true">在线/离线属性(ON为在线):
-                                <input id="data-type-two" type="checkbox" checked data-toggle="switch" value="on"
-                                       onchange="on_out_line(this)">
-                            </label>
-                        </div>
-
-                    </div>
-
-                     <!--设备匹配摸态框-->
-                    <div id="TandDevice" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="TandDevice-Label"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                                            class="sr-only">Close</span></button>
-                                    <h5 class="modal-title" id="TandDevice-title">设备匹配</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div style="margin-bottom: 5px" style="align-content: center">
-                                        <span>图元名称:</span>
-                                        <input id="T_name" class="textbox" disabled="true" value="">
-                                        <span>当前匹配设备名称:</span>
-                                        <input id="TA_name" class="textbox" disabled="true" value="">
-                                    </div>
-                                    <table id="TandD_table" class="easyui-datagrid">
-
-                                    </table>
-                                    <div id="TandD_tb">
-
-                                        &nbsp;<span>设备名称:</span>
-                                        <input id="TandD_PEL_NM" class="textbox">
-
-                                        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="SearchDEV()">Search</a>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" onclick="mapping()">确定匹配</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="height:80%;">
-                        <form id="attribute_data" class="form-inline" role="form"
-                              style="text-align: center;height: 100%;">
-                            <div id="property" style=" overflow: auto;height:86%;margin-bottom:1px;padding: 1px;">
-                            </div>
-                            <!--单个设备的曲线图-->
-                            <div class="modal fade" id="onecomLine" tabindex="-1" role="dialog"
-                                 aria-labelledby="comLineLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
-                                            </button>
-                                            <h4 class="modal-title">
-                                                工程曲线图
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div id="attribute_line" style="width:570px; height:350px; ">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="postion:relative">
-                                <input type="reset" class="btn btn-primary" style="width:24%" id="resetT"
-                                       disabled="true" value="重置属性">
-                                <input type="button" class="btn btn-primary" style="width:24%" id="inserT" value="添加记录">
-                                <input type="reset" class="btn btn-primary" style="width:24%" id="modifyT"
-                                       disabled="true" value="修改模式">
-                                <input type="button" class="btn btn-primary" style="width:24%" id="valueT"
-                                       disabled="true" value="保存数据" onclick="Submitall()" disabled="true">
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-            <!------------------模拟------------------>
-            <div class="tab-pane" id="moni"
-                 style=" border:1px solid #8f8f8f;height:100%;width: 100%;position:absolute;top: 0;left: 0; display: block;">
-                <div style="width:100%; height: 28%;">
-                    <form id="monitiaojian" class="form-group " role="form" style="width: 100%;">
-                        <!--onsubmit="return checkform();"-->
-                        <div class="form-group monicss container-fluid"
-                             style="width:100%; height: 10%; margin-top: 3px;text-align: center">
-                            <select id="SIM_DATA_TYPE" name="SIM_DATA_TYPE" data-toggle="select"
-                                    class="form-control select select-primary">
-                                <option value="1" selected="true">在线计算模式</option>
-                                <option value="0">离线计算模式</option>
-                            </select>
-                        </div>
-                        <div class="form-group monicss container-fluid"
-                             style="width:100%; height: 10%; margin-top: 3px; text-align: center">
-                            <select id="SIM_CAL_TYPE" name="SIM_CAL_TYPE" data-toggle="select"
-                                    class="form-control select select-primary" onchange="committypechange(this)">
-                                <option value="0">稳态计算模式</option>
-                                <option value="1" selected="true">瞬态计算模式</option>
-                            </select>
-                        </div>
-                        <div class="form-group monicss container-fluid"
-                             style="width:100%; height: 10%; margin-top: 3px;text-align: center">
-                            <button id="chooseDeptId" type="button" class="btn btn-info" style="width:100%;height: 40px"
-                                    onclick="chooseFzm()">选择操作对象
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div class="container-fluid" style="padding:1px;border:1px solid #8f8f8f;width: 100%;height: 28%;">
-                    <table id="setWiust" class="easyui-datagrid">
-                    </table>
-                    <div id="toolWiust">
-                    </div>
-                </div>
-                <form id="timeSet">
-                    <div style="width: 100%; height:28%;">
-                        <div class="input-group" style=" margin-top: 8%;">
-                            <label class="input-group-addon" style="width: 35%;height:25% ">存储开始时间：</label>
-                            <input name="SIM_START_STR" type="text" class="form-control" id="SIM_START_STR" value="0">
-                            <label class="input-group-addon" style="width: 10%">秒</label>
-                        </div>
-                        <div class="input-group" style=" margin-top: 8%;">
-                            <label class="input-group-addon" style="width: 35%;height:25%">仿真总的时间： </label>
-                            <input name="SIM_TIME_LEN" type="text" class="form-control" id="SIM_TIME_LEN" value="6000">
-                            <label class="input-group-addon" style="width: 10%">秒</label>
-                        </div>
-                        <div class="input-group" style="margin-top: 8%;">
-                            <label class="input-group-addon" style="width: 35%;height:25%">存 储 间 隔 ：</label>
-                            <input name="SIM_TIME_INTERVAL" type="text" class="form-control" id="SIM_TIME_INTERVAL"
-                                   value="2">
-                            <label class="input-group-addon" style="width: 10%">秒</label>
-                        </div>
-                    </div>
-                </form>
-                <div style="width: 100% ;margin-top: 5%;">
-                    <div style="width: 100%;  text-align: center">
-                        <button type="button" class="btn btn-info" style="width: 49%; height:30%;" id="btnRequest">运行
-                        </button>
-                        <button type="button" class="btn btn-info" style="width: 49%; height:30%; " id="stRequest">终止
-                        </button>
-                    </div>
-                    <!--<div style="width:100%;text-align: center;margin-top: 5%;">-->
-                        <!--<button type="button" style="width: 98%;  " class="btn btn-primary " data-toggle="modal"-->
-                                <!--data-target="#result-information">结果信息-->
-                        <!--</button>-->
-                    <!--</div>-->
-                </div>
-                <!--拓扑，结果信息，失败原因弹出框-->
-                <div class="modal fade" id="topology" tabindex="-1" role="dialog" aria-labelledby="topologyLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;
-                                </button>
-                                <h4 class="modal-title">
-                                    拓扑验证信息
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                在这里添加一些文本
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                    提交更改
-                                </button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal -->
-                </div>
-
-                <div class="modal fade" id="result-information" tabindex="-1" role="dialog"
-                     aria-labelledby="result-informationLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    &times;
-                                </button>
-                                <h4 class="modal-title">
-                                    结果详细信息
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                在这里添加一些文本
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                    提交更改
-                                </button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal -->
-                </div>
-
-            </div>
-
-            <!-------------------结果------------------->
-            <div class="tab-pane " id="jieguo"
-                 style="padding: 2px;border:1px solid #8f8f8f;width: 100%;height:100%;position:absolute;top: 0;left: 0;display: block;">
-
-                <!--所有仿真记录选择-->
-                <div style="width: 100%;height:45%;padding: 1px;border:1px solid #8f8f8f;" class=" container-fluid">
-                    <table id="slect-moni" class="easyui-datagrid" style="width: auto;">
-                    </table>
-                </div>
-
-                <!--按钮-->
-                <!--<div style="width: 100%;height:6%;text-align: center">-->
-                    <!--<button type="button" class="btn btn-info" style="width: 45%;margin-top: 5px;margin-bottom: 5px"-->
-                            <!--onclick="delete_moni()">删除记录-->
-                    <!--</button>-->
-
-
-                <!--</div>-->
-
-                <!--按钮-->
-                <div class="" style="width: 100%; height: 6%;text-align: center">
-                    <!--<button type="button" class="btn btn-success" style="width: 45%;margin-top: 3px;margin-bottom: 5px">-->
-                        <!--结果报告-->
-                    <!--</button>-->
-                    <button type="button" class="btn btn-info" style="width: 45%;margin-top: 5px;margin-bottom: 5px"
-                            onclick="selectanswer()">刷　　新
-                    </button>
-                    <button type="button" class="btn btn-info" style="width: 45%;margin-top: 3px;margin-bottom: 5px"
-                            data-toggle="modal" data-target="#comLine" onclick="getLine()">结果曲线
-                    </button>
-                    <div class="modal fade" id="comLine" tabindex="-1" role="dialog" aria-labelledby="comLineLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title">
-                                        工程仿真结果曲线图
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <!--style="overflow:hidden"-->
-                                    <!--<div id="xiao1"  style="width:100px; height:50px; float:left; background:#f00;">-->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-describedby="basic-addon1" id="projectName">
                                     <!--</div>-->
-                                    <div id="resultLine" style="width:570px; height:350px; ">
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                                    </button>
                                 </div>
                             </div>
-                            <!-- /.modal-content -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" id="createNew">确定新建</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            </div>
                         </div>
-                        <!-- /.modal -->
                     </div>
                 </div>
-
-                <!--详细信息-->
-                <div style="width: 100%;height:43%;padding: 1px;border:1px solid #8f8f8f;" class="container-fluid">
-                    <table id="tt" class="easyui-propertygrid" title="仿真详细信息" style="width:100%;height: 100%;"
-                           data-options="singleSelect:true,collapsible:true">
-                    </table>
-                    <div id="tbb">
-                        <!--<a href="#" class="easyui-linkbutton " onclick="reset()">修改</a>-->
-                        <!--<a href="#" class="easyui-linkbutton " style="display: none;" id="saveDe" onclick="saveDE()">保存</a>-->
-                        <!--<a href="#" class="easyui-linkbutton " style="display: none;" id="redo" onclick="reDo()">取消</a>-->
-                       <form id="resultSet">
-                        <div>
-                            用 户 名 :<input id="SIM_USER_CD" name="SIM_USER_CD" class="textbox" style="width: 80px; margin-left: 8px">
-                            &nbsp;&nbsp;&nbsp;仿真时间:<input id="SIM_DATE" style="width: 110px" type="text" name="SIM_DATE"
-                                                          editable="false" class="easyui-datebox">
+                <!--确认删除工程图-->
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    id="deleteModal">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h3><span class="label label-warning">确认删除？</span></h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" id="deleteYes">确认删除</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            </div>
                         </div>
-                        <div>
-                            水力模型:
-                            <select id="_SIM_CAL_TYPE" name="SIM_CAL_TYPE" class="easyui-combobox" style="width:80px;" panelHeight="80">
-                                <option value="9">All</option>
-                                <option value="1">非恒定</option>
-                                <option value="0">恒定</option>
-                            </select>
-                            &nbsp;&nbsp;&nbsp;数据来源:
-                            <select id="_SIM_DATA_TYPE" name="SIM_DATA_TYPE" class="easyui-combobox" style="width:70px;" panelHeight="80">
-                                <option value="9">All</option>
-                                <option value="1">在线</option>
-                                <option value="0">离线</option>
-                            </select>
-                            <a href="#" class="easyui-linkbutton" onclick="doSearchtwo()" iconCls="icon-search"></a>
+                    </div>
+                </div>
+                <!--工程右键选项-->
+                <ul id="context-menu" class="dropdown-menu">
+                    <li data-item="edit">
+                        <a>编辑</a>
+                    </li>
+                    <li data-item="delete">
+                        <a>删除</a>
+                    </li>
+                </ul>
+                <!--重设密码弹出框-->
+                <div id="user-management" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="user-management-Label"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                            <h5 class="modal-title" id="user-management-title">账号管理</h5>
                         </div>
-                       </form>
-
-                        <!--plain="true"-->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="username" class="cols-sm-2 control-label">用户名</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-user" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="username" id="username" value=""
+                                        disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pastpassword" class="cols-sm-2 control-label">原密码</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="password" id="pastpassword"
+                                        placeholder="Enter your Password"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="cols-sm-2 control-label">新密码</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Enter your Password"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">再次输入密码</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-warning-sign" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="confirm" id="confirm"
+                                        placeholder="Confirm your Password"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" id="btn_modify_password">确定修改</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
+        </nav>
+        <div class="col-md-10 col-sm-10" style="height: 99%;" >
+            <div id="app" class="app-position">
+                <div class="app-body">
+                    <div class="toolbar-container"></div>
+                    <div class="stencil-container"></div>
+                    <div class="paper-container"></div>
+                    <div class="navigator-container"></div>
+                </div>
+            </div>
+        </div>
+        <!--设备匹配摸态框-->
+        <div id="TandDevice" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="TandDevice-Label"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                    class="sr-only">Close</span></button>
+                    <h5 class="modal-title" id="TandDevice-title">设备匹配</h5>
+                </div>
+                <div class="modal-body">
+                    <div style="margin-bottom: 5px" style="align-content: center">
+                        <span>图元类型:</span>
+                        <input id="T_name" class="textbox" disabled="true" value="">
+                        <span>当前匹配设备名称:</span>
+                        <input id="TA_name" class="textbox" disabled="true" value="">
+                        <br >
+                        <span>设备编码:</span>
+                        <input id="T_id" class="textbox" disabled="true" value="" style="width: 300px;">
+                    </div>
+                    <table  id="TandD_table" data-toggle="table"  data-single-select="true" data-click-to-select="true">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="name">设备名称</th>
+                                <th data-field="ns">备注</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button  id="mapping" type="button" class="btn btn-default">确定匹配</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
         </div>
     </div>
-            <!-- Rappid/JointJS dependencies: -->
-            <script src="js/lib/jquery.js"></script>
-            <script src="js/lib/index.js"></script>
-            <script src="js/lib/backbone.js"></script>
-            <script src="js/lib/graphlib.core.js"></script>
-            <script src="js/lib/dagre.core.js"></script>
-            <script src="js/lib/rappid.min.js"></script>
-            
-            <!-- bootsrapjs dependencies: -->
-            <script src="js/lib/bootstrap.min.js"></script>
-            <script src="js/lib/bootstrap-table.js"></script>
-            <script src="js/lib/bootstrap-editable.js"></script>
-            <script src="js/lib/bootstrap-table-zh-CN.js"></script>
-            <script src="js/lib/bootstrap-table-contextmenu.js"></script>
-            <script src="js/lib/bootstrap-table-editable.js"></script>
-            
-            <!--easyUI.js-->
-            <script type="text/javascript" src="js/lib/jquery.easyui.min.js"></script>
-            <script type="text/javascript" src="js/lib/easyui-lang-zh_CN.js"></script>
-            <!-- custom js:  -->
-            <script type="text/javascript" src="js/project_manage.js"></script>
-            <script type="text/javascript" src="js/Jwork.js"></script>
-            <script type="text/javascript" src="js/attribute_result.js"></script>
-            <script type="text/javascript" src="js/jquery-form.js"></script>
-            <!--[if IE 9]>
-            <script>
-            // `-ms-user-select: none` doesn't work in IE9
-            document.onselectstart = function() { return false; };
-            </script>
-            <![endif]-->
-            <!-- Application files:  -->
-            <script src="js/config/halo.js"></script>
-            <script src="js/config/selection.js"></script>
-            <script src="js/config/inspector.js"></script>
-            <script src="js/config/stencil.js"></script>
-            <script src="js/config/toolbar.js"></script>
-            <script src="js/views/main.js"></script>
-            <script src="js/views/theme-picker.js"></script>
-            <script src="js/models/joint.shapes.app.js"></script>
-            <script>
-            joint.setTheme('modern');
-            app = new App.MainView({ el: '#app' });
-            themePicker = new App.ThemePicker({ mainView: app });
-            themePicker.render().$el.appendTo(document.getElementById('app'));
-            // window.addEventListener('load', function() {
-            //app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
-            </script>
-        </body>
-    </html>
+    <!--右侧-->
+    <div class="col-md-2 col-sm-2" style="height:99%;padding-top: 50px;">
+        <div id="attrs-match">
+            <div class="inspector-container"></div>
+            <div id="match-button" class="btn-group" role="group" aria-label="...">
+                <button id="match-select" class="btn btn-default" data-toggle="modal" data-target="#TandDevice">匹配</button>
+                <button type="button" class="btn btn-default">新增</button>
+                <button type="button" class="btn btn-default">删除</button>
+            </div>
+        </div>
+    </div>
+    <!-- Rappid/JointJS dependencies: -->
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/index.js"></script>
+    <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/graphlib.core.js"></script>
+    <script src="js/lib/dagre.core.js"></script>
+    <script src="js/lib/rappid.min.js"></script>
+    <!-- bootsrapjs dependencies: -->
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/bootstrap-table.js"></script>
+    <script src="js/lib/bootstrap-editable.js"></script>
+    <script src="js/lib/bootstrap-table-zh-CN.js"></script>
+    <script src="js/lib/bootstrap-table-contextmenu.js"></script>
+    <script src="js/lib/bootstrap-table-editable.js"></script>
+    <!--easyUI.js-->
+    <script type="text/javascript" src="js/lib/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/lib/easyui-lang-zh_CN.js"></script>
+    <!-- custom js:  -->
+    <script type="text/javascript" src="js/project_manage.js"></script>
+    <script type="text/javascript" src="js/Jwork.js"></script>
+    <script type="text/javascript" src="js/attribute_result.js"></script>
+    <script type="text/javascript" src="js/jquery-form.js"></script>
+    <!--[if IE 9]>
+    <script>
+    // `-ms-user-select: none` doesn't work in IE9
+    document.onselectstart = function() { return false; };
+    </script>
+    <![endif]-->
+    <!-- Application files:  -->
+    <script src="js/config/halo.js"></script>
+    <script src="js/config/selection.js"></script>
+    <script src="js/config/inspector.js"></script>
+    <script src="js/config/stencil.js"></script>
+    <script src="js/config/toolbar.js"></script>
+    <script src="js/views/main.js"></script>
+    <script src="js/views/theme-picker.js"></script>
+    <script src="js/models/joint.shapes.app.js"></script>
+    <script>
+    joint.setTheme('modern');
+    app = new App.MainView({ el: '#app' });
+    themePicker = new App.ThemePicker({ mainView: app });
+    themePicker.render().$el.appendTo(document.getElementById('app'));
+    // window.addEventListener('load', function() {
+    //app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
+    </script>
+</body>
+</html>
