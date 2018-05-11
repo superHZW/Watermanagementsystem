@@ -51,6 +51,7 @@ var type={
 };
 
 
+<<<<<<< HEAD
 
 //设备匹配出现的表格
 $(function () {
@@ -323,6 +324,8 @@ function mapping() {
 };
 
 
+=======
+>>>>>>> f95926e82670b172c85bc7ab919f361a2565a3ca
 //-------------------------修改密码-------------------------
 function getNowFormatDate() {
     var date = new Date();
@@ -345,8 +348,13 @@ $(document).ready(function () {
 
     username = sessionStorage.getItem("username", null);
     if (username == null) {
+<<<<<<< HEAD
         //    alert("请重新登录");
         // window.location = "login.html";
+=======
+           alert("请重新登录");
+        window.location = "#";
+>>>>>>> f95926e82670b172c85bc7ab919f361a2565a3ca
     };
     $("#username").val(username);
     //登出
