@@ -282,9 +282,9 @@ var App = window.App || {};
                 var cell = cellView.model;
 
                 if (cell.isElement() && cell.get('type') != 'basic.Text') {
-                    document.getElementById('T_name').value = cell.get("modeltext");
+                    document.getElementById('T_name').value = cell.get("modelType");
                     document.getElementById('T_id').value = cell.id;
-                    document.getElementById('TA_name').value = cell.get("name");
+                    document.getElementById('TA_name').value = cell.get("DEVICE_NAME");
                 }
 
                 if (!this.selection.collection.contains(cell)) {

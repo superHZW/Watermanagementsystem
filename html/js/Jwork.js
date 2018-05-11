@@ -1,12 +1,12 @@
 // 全局变量
 
 var myChart; //全局结果图表对象
-var getPRJ_CD = null;//全局工程ID
+var getPRJ_CD = null; //全局工程ID
 var myChartt; //单个设备属性或结果图表对象
 var getSIM_CD = undefined; //获得的仿真记录编码
 var getOBJ_CD = undefined; //获得鼠标点中的对象ID
 var getPRJ_TYPE = undefined; //获得设备类型
-var indexFz;//记录选中的仿真记录
+var indexFz; //记录选中的仿真记录
 var cell_view = null;
 var cell_view_save = null;
 var url = '../water_manage_system/';
@@ -23,26 +23,26 @@ var dataa = [
     [],
     []
 ];
-var type={
+var type = {
     "culvert": 1,
     "pipe": 2,
     "valve_b": 3,
     "valve_f": 4,
     "valve_n": 5,
     "valve_o": 6,
-    "valve_a": 7 ,
-    "was_p": 8 ,
-    "was_c": 9 ,
-    "surgetank": 10 ,
+    "valve_a": 7,
+    "was_p": 8,
+    "was_c": 9,
+    "surgetank": 10,
     "wds": 11,
-    "wiust": 12 ,
-    "overflow": 13 ,
-    "bleeder": 14 ,
-    "insump": 15 ,
-    "outpool": 16 ,
+    "wiust": 12,
+    "overflow": 13,
+    "bleeder": 14,
+    "insump": 15,
+    "outpool": 16,
     "coffer": 17,
-    "mhprrp": 18 ,
-    "hydturbine": 19 ,
+    "mhprrp": 18,
+    "hydturbine": 19,
     "piezometer": 20,
     "flow": 21,
     "node": 22,
@@ -68,19 +68,22 @@ function getNowFormatDate() {
         seperator2 + date.getSeconds();
     return currentdate;
 }
-$(document).ready(function () {
+$(document).ready(function() {
 
     username = sessionStorage.getItem("username", null);
     if (username == null) {
-           alert("请重新登录");
+        alert("请重新登录");
         window.location = "#";
     };
     $("#username").val(username);
     //登出
-    logout = function () {
+    logout = function() {
         id = sessionStorage.getItem("id");
         date = getNowFormatDate();
-        json_data = {"id": id, "date": date};
+        json_data = {
+            "id": id,
+            "date": date
+        };
         //移除session
         sessionStorage.removeItem("id");
         sessionStorage.removeItem("username");
@@ -90,19 +93,19 @@ $(document).ready(function () {
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify(json_data),
-            success: function (ret_data) {
+            success: function(ret_data) {
                 if (ret_data == "failed_update_date") {
                     alert("更新日期失败");
                 } else {
                     window.location = "home.html";
                 }
             },
-            error: function () {
+            error: function() {
                 alert("更新日期失败");
             }
         });
     };
-    $("#btn_modify_password").click(function () {
+    $("#btn_modify_password").click(function() {
         if ($("#password").val() != $("#confirm").val()) {
 
             $.messager.alert({
@@ -110,8 +113,7 @@ $(document).ready(function () {
                 msg: '两次输入密码不一样！！'
             });
             return;
-        }
-        ;
+        };
         password = $("#password").val();
         id = sessionStorage.getItem("id", null);
         pastpassword = $('#pastpassword').val();
@@ -124,14 +126,18 @@ $(document).ready(function () {
             // alert(password);
             return;
         }
-        json_data = {"id": id, "password": password, "pastpassword": pastpassword};
+        json_data = {
+            "id": id,
+            "password": password,
+            "pastpassword": pastpassword
+        };
         $.ajax({
             type: "POST",
             url: url + "updatepassword",
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify(json_data),
-            success: function (ret_data) {
+            success: function(ret_data) {
                 if (ret_data == "old_error") {
                     $.messager.alert({
                         title: '警告',
@@ -151,7 +157,7 @@ $(document).ready(function () {
                     });
                 }
             },
-            error: function () {
+            error: function() {
                 $.messager.alert({
                     title: '警告',
                     msg: '密码修改失败，请重试！'
@@ -162,12 +168,3 @@ $(document).ready(function () {
     })
 
 });
-
-
-
-
-
-
-
-
-

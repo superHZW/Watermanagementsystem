@@ -76,11 +76,11 @@ App.config = App.config || {};
         },
         {
             type: 'devs.MyInsump',
-            outPorts:['进口'],
+            outPorts:['出口'],
         },
         {
             type: 'devs.MyOutpool',
-            inPorts:['出口'],
+            inPorts:['进口'],
         },
          {
             type: 'devs.MyValuen',
