@@ -147,6 +147,7 @@
 
     defaults: joint.util.deepSupplement({
       type: 'devs.MyInsump',
+      name:'进水池',
       DEVICE_CODE:'',
       DEVICE_NAME:'',
       BELONG_TO_PCODE:'',
