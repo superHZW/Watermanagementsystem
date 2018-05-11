@@ -91,6 +91,36 @@
     defaults: joint.util.deepSupplement({
 
       type: 'devs.Mypipe',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      BEGIN_STAKE_MARK:'',
+      END_STAKE_MARK:'',
+      IN_HIGHT:'',
+      OUT_HIGHT:'',
+      PIPE_MATE:'',
+      EQUIMENT_LENGTH:'',
+      SLOPE:'',
+      SHAPE:'',
+      WATER_POWER:'',
+      ROUGHNESS:'',
+      YCXS:'',
+      YCSS:'',
+      TJTXML:'',
+      INI_Q:'',
+      RESULT_Q:'',
+      DESIGN_PRESSURE:'',
+      SCBS:'',
+      DESIGN_V:'',
+      PIPE_COUNT:'',
+      INSIDE_P:'',
+      PIPE_INSIDE_R:'',
+      PIPE_THICK:'',
+      CYDJ:'',
+      QHYL:'',
+      B:'',
+      RL:'',
+      NOTE:'',
       size: {
         width: 60,
         height: 20
@@ -117,6 +147,19 @@
 
     defaults: joint.util.deepSupplement({
       type: 'devs.MyInsump',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      LGTD:'',
+      LTTD:'',
+      DESIGN_Q:'',
+      INTAKESUMP_LEVEL:'',
+      PIPE_SIZE:'',
+      PIPE_COUNT:'',
+      DESIGN_PRESSURE:'',
+      SECTION_IN:'',
+      WATER_HEIGHT:'',
+      NOTE:'',
       size: {
         width: 70,
         height: 100
@@ -128,7 +171,7 @@
           'data-tooltip-position-selector': '.joint-stencil'
         },
         image: {
-          'xlink:href': 'assets/svg/进水池.svg',
+          'xlink:href': 'assets/svg/insump.svg',
         },
       }
     }, joint.shapes.devs.Model.prototype.defaults)
@@ -146,6 +189,18 @@
     defaults: joint.util.deepSupplement({
 
       type: 'devs.MyOutpool',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      LGTD:'',
+      LTTD:'',
+      DESIGN_Q:'',
+      OUTPOOL_LEVEL:'',
+      PIPE_SIZE:'',
+      PIPE_COUNT:'',
+      SECTION_IN:'',
+      WATER_HEIGHT:'',
+      NOTE:'',
       size: {
         width: 70,
         height: 100
@@ -157,7 +212,7 @@
           'data-tooltip-position-selector': '.joint-stencil'
         },
         image: {
-          'xlink:href': 'assets/svg/出水池.svg',
+          'xlink:href': 'assets/svg/outpool.svg',
         }
       }
 
@@ -176,6 +231,33 @@
     defaults: joint.util.deepSupplement({
 
       type: 'devs.MyValuen',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      VAV_TYPE:'',
+      IS_OPERATE:'',
+      STAKE_MARK:'',
+      VAV_WORK:'',
+      VAV_SEC_IN:'',
+      LGTD:'',
+      LTTD:'',
+      VAV_SIZE:'',
+      PRESSURE_LEVEL:'',
+      START_CONDI:'',
+      MAX_DELPRE_START:'',
+      USER_TYPE:'',
+      INSTALL_HEIGHT:'',
+      INI_OPEN_LEVEL:'',
+      Q:'',
+      DESIGN_PRESSURE:'',
+      VAV_OTHER_SIZE:'',
+      INI_OPENLEVEL_MIN:'',
+      PRESSURE_WORK:'',
+      PREW_MAX_DEL:'',
+      NVAV_COUNT:'',
+      K_ALL_OPEN:'',
+      VAV_SIDE_S:'',
+      NOTE:'',
       size: {
         width: 70,
         height: 100
@@ -187,7 +269,7 @@
           'data-tooltip-position-selector': '.joint-stencil'
         },
         image: {
-          'xlink:href': 'assets/svg/调流阀.svg',
+          'xlink:href': 'assets/svg/valve_n.svg',
         }
       }
 
@@ -206,6 +288,33 @@
     defaults: joint.util.deepSupplement({
 
       type: 'devs.MyValuef',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      VAV_TYPE:'',
+      IS_OPERATE:'',
+      STAKE_MARK:'',
+      VAV_WORK:'',
+      VAV_SEC_IN:'',
+      LGTD:'',
+      LTTD:'',
+      VAV_SIZE:'',
+      PRESSURE_LEVEL:'',
+      START_CONDI:'',
+      MAX_DELPRE_START:'',
+      USER_TYPE:'',
+      INSTALL_HEIGHT:'',
+      INI_OPEN_LEVEL:'',
+      Q:'',
+      DESIGN_PRESSURE:'',
+      VAV_OTHER_SIZE:'',
+      INI_OPENLEVEL_MIN:'',
+      PRESSURE_WORK:'',
+      PREW_MAX_DEL:'',
+      NVAV_COUNT:'',
+      K_ALL_OPEN:'',
+      VAV_SIDE_S:'',
+      NOTE:'',
       size: {
         width: 70,
         height: 100
@@ -217,7 +326,7 @@
           'data-tooltip-position-selector': '.joint-stencil'
         },
         image: {
-          'xlink:href': 'assets/svg/蝶阀.svg',
+          'xlink:href': 'assets/svg/valve_f.svg',
         }
       }
 
@@ -236,6 +345,33 @@
     defaults: joint.util.deepSupplement({
 
       type: 'devs.MyValueb',
+      DEVICE_CODE:'',
+      DEVICE_NAME:'',
+      BELONG_TO_PCODE:'',
+      VAV_TYPE:'',
+      IS_OPERATE:'',
+      STAKE_MARK:'',
+      VAV_WORK:'',
+      VAV_SEC_IN:'',
+      LGTD:'',
+      LTTD:'',
+      VAV_SIZE:'',
+      PRESSURE_LEVEL:'',
+      START_CONDI:'',
+      MAX_DELPRE_START:'',
+      USER_TYPE:'',
+      INSTALL_HEIGHT:'',
+      INI_OPEN_LEVEL:'',
+      Q:'',
+      DESIGN_PRESSURE:'',
+      VAV_OTHER_SIZE:'',
+      INI_OPENLEVEL_MIN:'',
+      PRESSURE_WORK:'',
+      PREW_MAX_DEL:'',
+      NVAV_COUNT:'',
+      K_ALL_OPEN:'',
+      VAV_SIDE_S:'',
+      NOTE:'',
       size: {
         width: 70,
         height: 100,
@@ -247,7 +383,7 @@
           'data-tooltip-position-selector': '.joint-stencil'
         },
         image: {
-          'xlink:href': 'assets/svg/球阀.svg',
+          'xlink:href': 'assets/svg/valve_b.svg',
         }
       }
 
