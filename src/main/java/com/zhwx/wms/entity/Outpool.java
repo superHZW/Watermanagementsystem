@@ -1,70 +1,60 @@
 package com.zhwx.wms.entity;
 
 public class Outpool {
-    private Integer cnwCd;
+    private String deviceCode;
 
-    private String cnwName;
+    private String deviceName;
 
-    private Integer nodeCd;
+    private String belongToPcode;
 
-    private String objCd;
-
-    private Double lgtd;
+    private String lgtd;
 
     private Double lttd;
 
-    private Double q;
+    private Double designQ;
 
-    private Double outW;
+    private Double outpoolLevel;
 
     private Double pipeSize;
 
-    private Integer pipeC;
+    private Integer pipeCount;
 
-    private String szfd;
+    private String sectionIn;
 
-    private Double z;
+    private Double waterHeight;
 
-    private String nt;
+    private String note;
 
-    public Integer getCnwCd() {
-        return cnwCd;
+    public String getDeviceCode() {
+        return deviceCode;
     }
 
-    public void setCnwCd(Integer cnwCd) {
-        this.cnwCd = cnwCd;
+    public void setDeviceCode(String deviceCode) {
+        this.deviceCode = deviceCode == null ? null : deviceCode.trim();
     }
 
-    public String getCnwName() {
-        return cnwName;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setCnwName(String cnwName) {
-        this.cnwName = cnwName == null ? null : cnwName.trim();
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName == null ? null : deviceName.trim();
     }
 
-    public Integer getNodeCd() {
-        return nodeCd;
+    public String getBelongToPcode() {
+        return belongToPcode;
     }
 
-    public void setNodeCd(Integer nodeCd) {
-        this.nodeCd = nodeCd;
+    public void setBelongToPcode(String belongToPcode) {
+        this.belongToPcode = belongToPcode == null ? null : belongToPcode.trim();
     }
 
-    public String getObjCd() {
-        return objCd;
-    }
-
-    public void setObjCd(String objCd) {
-        this.objCd = objCd == null ? null : objCd.trim();
-    }
-
-    public Double getLgtd() {
+    public String getLgtd() {
         return lgtd;
     }
 
-    public void setLgtd(Double lgtd) {
-        this.lgtd = lgtd;
+    public void setLgtd(String lgtd) {
+        this.lgtd = lgtd == null ? null : lgtd.trim();
     }
 
     public Double getLttd() {
@@ -75,20 +65,20 @@ public class Outpool {
         this.lttd = lttd;
     }
 
-    public Double getQ() {
-        return q;
+    public Double getDesignQ() {
+        return designQ;
     }
 
-    public void setQ(Double q) {
-        this.q = q;
+    public void setDesignQ(Double designQ) {
+        this.designQ = designQ;
     }
 
-    public Double getOutW() {
-        return outW;
+    public Double getOutpoolLevel() {
+        return outpoolLevel;
     }
 
-    public void setOutW(Double outW) {
-        this.outW = outW;
+    public void setOutpoolLevel(Double outpoolLevel) {
+        this.outpoolLevel = outpoolLevel;
     }
 
     public Double getPipeSize() {
@@ -99,35 +89,35 @@ public class Outpool {
         this.pipeSize = pipeSize;
     }
 
-    public Integer getPipeC() {
-        return pipeC;
+    public Integer getPipeCount() {
+        return pipeCount;
     }
 
-    public void setPipeC(Integer pipeC) {
-        this.pipeC = pipeC;
+    public void setPipeCount(Integer pipeCount) {
+        this.pipeCount = pipeCount;
     }
 
-    public String getSzfd() {
-        return szfd;
+    public String getSectionIn() {
+        return sectionIn;
     }
 
-    public void setSzfd(String szfd) {
-        this.szfd = szfd == null ? null : szfd.trim();
+    public void setSectionIn(String sectionIn) {
+        this.sectionIn = sectionIn == null ? null : sectionIn.trim();
     }
 
-    public Double getZ() {
-        return z;
+    public Double getWaterHeight() {
+        return waterHeight;
     }
 
-    public void setZ(Double z) {
-        this.z = z;
+    public void setWaterHeight(Double waterHeight) {
+        this.waterHeight = waterHeight;
     }
 
-    public String getNt() {
-        return nt;
+    public String getNote() {
+        return note;
     }
 
-    public void setNt(String nt) {
-        this.nt = nt == null ? null : nt.trim();
+    public void setNote(String note) {
+        this.note = note == null ? null : note.trim();
     }
 }

@@ -1,68 +1,122 @@
 package com.zhwx.wms.entity;
 
 public class Valve {
-    private Integer vavCd;
+    private String deviceCode;
 
-    private Integer nodeCd;
+    private String deviceName;
+
+    private String belongToPcode;
+
+    private String vavType;
+
+    private Integer isOperate;
+
+    private Double stakeMark;
+
+    private String vavWork;
+
+    private String vavSecIn;
 
     private Double lgtd;
 
     private Double lttd;
 
-    private String vavNm;
-
-    private String vavType;
-
-    private String vavWork;
-
     private Double vavSize;
 
-    private Double mp;
+    private Double pressureLevel;
 
-    private String ismp;
+    private String startCondi;
 
-    private String maxmp;
-
-    private String szfd;
+    private Double maxDelpreStart;
 
     private String userType;
 
-    private Double azgc;
+    private Double installHeight;
 
-    private Boolean isoperate;
+    private Double iniOpenLevel;
 
-    private String stakemark;
+    private Double q;
 
-    private Double kd;
+    private Double designPressure;
 
-    private Double vaOtherQ;
+    private Double vavOtherSize;
 
-    private Double vaOtherMp;
+    private Double iniOpenlevelMin;
 
-    private Double vaOtherSize;
+    private String pressureWork;
 
-    private Integer nValve;
+    private Double prewMaxDel;
 
-    private Double kdV0;
+    private Integer nvavCount;
 
-    private Double av;
+    private Double kAllOpen;
 
-    private String nt;
+    private Double vavSideS;
 
-    public Integer getVavCd() {
-        return vavCd;
+    private String note;
+
+    public String getDeviceCode() {
+        return deviceCode;
     }
 
-    public void setVavCd(Integer vavCd) {
-        this.vavCd = vavCd;
+    public void setDeviceCode(String deviceCode) {
+        this.deviceCode = deviceCode == null ? null : deviceCode.trim();
     }
 
-    public Integer getNodeCd() {
-        return nodeCd;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setNodeCd(Integer nodeCd) {
-        this.nodeCd = nodeCd;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName == null ? null : deviceName.trim();
+    }
+
+    public String getBelongToPcode() {
+        return belongToPcode;
+    }
+
+    public void setBelongToPcode(String belongToPcode) {
+        this.belongToPcode = belongToPcode == null ? null : belongToPcode.trim();
+    }
+
+    public String getVavType() {
+        return vavType;
+    }
+
+    public void setVavType(String vavType) {
+        this.vavType = vavType == null ? null : vavType.trim();
+    }
+
+    public Integer getIsOperate() {
+        return isOperate;
+    }
+
+    public void setIsOperate(Integer isOperate) {
+        this.isOperate = isOperate;
+    }
+
+    public Double getStakeMark() {
+        return stakeMark;
+    }
+
+    public void setStakeMark(Double stakeMark) {
+        this.stakeMark = stakeMark;
+    }
+
+    public String getVavWork() {
+        return vavWork;
+    }
+
+    public void setVavWork(String vavWork) {
+        this.vavWork = vavWork == null ? null : vavWork.trim();
+    }
+
+    public String getVavSecIn() {
+        return vavSecIn;
+    }
+
+    public void setVavSecIn(String vavSecIn) {
+        this.vavSecIn = vavSecIn == null ? null : vavSecIn.trim();
     }
 
     public Double getLgtd() {
@@ -81,30 +135,6 @@ public class Valve {
         this.lttd = lttd;
     }
 
-    public String getVavNm() {
-        return vavNm;
-    }
-
-    public void setVavNm(String vavNm) {
-        this.vavNm = vavNm == null ? null : vavNm.trim();
-    }
-
-    public String getVavType() {
-        return vavType;
-    }
-
-    public void setVavType(String vavType) {
-        this.vavType = vavType == null ? null : vavType.trim();
-    }
-
-    public String getVavWork() {
-        return vavWork;
-    }
-
-    public void setVavWork(String vavWork) {
-        this.vavWork = vavWork == null ? null : vavWork.trim();
-    }
-
     public Double getVavSize() {
         return vavSize;
     }
@@ -113,36 +143,28 @@ public class Valve {
         this.vavSize = vavSize;
     }
 
-    public Double getMp() {
-        return mp;
+    public Double getPressureLevel() {
+        return pressureLevel;
     }
 
-    public void setMp(Double mp) {
-        this.mp = mp;
+    public void setPressureLevel(Double pressureLevel) {
+        this.pressureLevel = pressureLevel;
     }
 
-    public String getIsmp() {
-        return ismp;
+    public String getStartCondi() {
+        return startCondi;
     }
 
-    public void setIsmp(String ismp) {
-        this.ismp = ismp == null ? null : ismp.trim();
+    public void setStartCondi(String startCondi) {
+        this.startCondi = startCondi == null ? null : startCondi.trim();
     }
 
-    public String getMaxmp() {
-        return maxmp;
+    public Double getMaxDelpreStart() {
+        return maxDelpreStart;
     }
 
-    public void setMaxmp(String maxmp) {
-        this.maxmp = maxmp == null ? null : maxmp.trim();
-    }
-
-    public String getSzfd() {
-        return szfd;
-    }
-
-    public void setSzfd(String szfd) {
-        this.szfd = szfd == null ? null : szfd.trim();
+    public void setMaxDelpreStart(Double maxDelpreStart) {
+        this.maxDelpreStart = maxDelpreStart;
     }
 
     public String getUserType() {
@@ -153,91 +175,99 @@ public class Valve {
         this.userType = userType == null ? null : userType.trim();
     }
 
-    public Double getAzgc() {
-        return azgc;
+    public Double getInstallHeight() {
+        return installHeight;
     }
 
-    public void setAzgc(Double azgc) {
-        this.azgc = azgc;
+    public void setInstallHeight(Double installHeight) {
+        this.installHeight = installHeight;
     }
 
-    public Boolean getIsoperate() {
-        return isoperate;
+    public Double getIniOpenLevel() {
+        return iniOpenLevel;
     }
 
-    public void setIsoperate(Boolean isoperate) {
-        this.isoperate = isoperate;
+    public void setIniOpenLevel(Double iniOpenLevel) {
+        this.iniOpenLevel = iniOpenLevel;
     }
 
-    public String getStakemark() {
-        return stakemark;
+    public Double getQ() {
+        return q;
     }
 
-    public void setStakemark(String stakemark) {
-        this.stakemark = stakemark == null ? null : stakemark.trim();
+    public void setQ(Double q) {
+        this.q = q;
     }
 
-    public Double getKd() {
-        return kd;
+    public Double getDesignPressure() {
+        return designPressure;
     }
 
-    public void setKd(Double kd) {
-        this.kd = kd;
+    public void setDesignPressure(Double designPressure) {
+        this.designPressure = designPressure;
     }
 
-    public Double getVaOtherQ() {
-        return vaOtherQ;
+    public Double getVavOtherSize() {
+        return vavOtherSize;
     }
 
-    public void setVaOtherQ(Double vaOtherQ) {
-        this.vaOtherQ = vaOtherQ;
+    public void setVavOtherSize(Double vavOtherSize) {
+        this.vavOtherSize = vavOtherSize;
     }
 
-    public Double getVaOtherMp() {
-        return vaOtherMp;
+    public Double getIniOpenlevelMin() {
+        return iniOpenlevelMin;
     }
 
-    public void setVaOtherMp(Double vaOtherMp) {
-        this.vaOtherMp = vaOtherMp;
+    public void setIniOpenlevelMin(Double iniOpenlevelMin) {
+        this.iniOpenlevelMin = iniOpenlevelMin;
     }
 
-    public Double getVaOtherSize() {
-        return vaOtherSize;
+    public String getPressureWork() {
+        return pressureWork;
     }
 
-    public void setVaOtherSize(Double vaOtherSize) {
-        this.vaOtherSize = vaOtherSize;
+    public void setPressureWork(String pressureWork) {
+        this.pressureWork = pressureWork == null ? null : pressureWork.trim();
     }
 
-    public Integer getnValve() {
-        return nValve;
+    public Double getPrewMaxDel() {
+        return prewMaxDel;
     }
 
-    public void setnValve(Integer nValve) {
-        this.nValve = nValve;
+    public void setPrewMaxDel(Double prewMaxDel) {
+        this.prewMaxDel = prewMaxDel;
     }
 
-    public Double getKdV0() {
-        return kdV0;
+    public Integer getNvavCount() {
+        return nvavCount;
     }
 
-    public void setKdV0(Double kdV0) {
-        this.kdV0 = kdV0;
+    public void setNvavCount(Integer nvavCount) {
+        this.nvavCount = nvavCount;
     }
 
-    public Double getAv() {
-        return av;
+    public Double getkAllOpen() {
+        return kAllOpen;
     }
 
-    public void setAv(Double av) {
-        this.av = av;
+    public void setkAllOpen(Double kAllOpen) {
+        this.kAllOpen = kAllOpen;
     }
 
-    public String getNt() {
-        return nt;
+    public Double getVavSideS() {
+        return vavSideS;
     }
 
-    public void setNt(String nt) {
-        this.nt = nt == null ? null : nt.trim();
+    public void setVavSideS(Double vavSideS) {
+        this.vavSideS = vavSideS;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note == null ? null : note.trim();
     }
 }

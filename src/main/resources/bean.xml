@@ -16,4 +16,6 @@
     ">
  	<bean name="testService" class="com.zhwx.wms.testService.testService" /> 
  	<bean name="prjService" class="com.zhwx.wms.Service.prjService" /> 
+ 	<bean name="devService" class="com.zhwx.wms.Service.devService" />
+ 	<bean name="userService" class="com.zhwx.wms.Service.userService" />
  </beans>

@@ -343,35 +343,35 @@ function getOnlineDate(cellId, type) {
 
             }, this);
         },
+        
+        createInspector: function(cell) {
+
+            return joint.ui.Inspector.create('.inspector-container', _.extend({
+                cell: cell
+            }, App.config.inspector[cell.get('type')]));
+        },
 
         initializeHaloAndInspector: function() {
-        	
-        	
+
             this.paper.on('element:pointerup link:options', function(cellView) {
 
                 var cell = cellView.model;
-                
+
+                if (cell.isElement() && cell.get('type') != 'basic.Text') {
+                    document.getElementById('T_name').value = cell.get("modelType");
+                    document.getElementById('T_id').value = cell.id;
+                    document.getElementById('TA_name').value = cell.get("DEVICE_NAME");
+                }
+
                 if (!this.selection.collection.contains(cell)) {
-                	
-                	
-                    var cellId = cell.get("id"); //图元id
-                    
-                    
-                    //var cellName = cell.get("attrs").text.text; //图元名称
-                    //var cellNAME =  cell.get("modelText");//
-                   //var cellNAME = cell_view.model.toJSON().modelText;
-                    var cellNAME = $(".joint-dialog input[type=text]").eq(1).val();
-                    alert(cellId + ""+cellNAME);
-                	
-                	
 
                     if (cell.isElement()) {
 
                         new joint.ui.FreeTransform({
                             cellView: cellView,
-                            allowRotation: true,
+                            allowRotation: false,
                             preserveAspectRatio: !!cell.get('preserveAspectRatio'),
-                            allowOrthogonalResize: cell.get('allowOrthogonalResize') !== true
+                            allowOrthogonalResize: cell.get('allowOrthogonalResize') !== false
                         }).render();
 
                         new joint.ui.Halo({
@@ -384,52 +384,11 @@ function getOnlineDate(cellId, type) {
                             silent: true
                         });
                     }
+
+                    this.createInspector(cell);
                 }
-                
-                dialog.on({
-                    'action:cancel': function () {
-                        inspector.remove();
-                        dialog.close();
-                    },
-                    'action:apply': function () {
 
-                        var epId = cell.get("equipmentId"); //设备id
-                        var epName = cell.get("equipmentName"); //设备名称
-                       //var sendDate = '{"cellId":"' + cellName + '","PEL_NM":"' + cellName + '"}';
-
-                        //右键弹出框确定后的ajax。传递图元名称和设备名称
-                        /*$.ajax({
-                            url: url + 'updatehob', //增加的url
-                            type: 'post',
-                            data: {
-                                OBJ_CD: cellId.substring(0, 8) + cellId.substring(9, 13) + cellId.substring(14, 18) + cellId.substring(19, 23) + cellId.substring(24, 36),
-                                //PEL_NM:cell_view.model.toJSON().modelText
-                                PEL_NM: cellNAME
-                            },
-                            success: function (data) {
-                                $('#devices').datagrid('reload', {PRJ_CD: getPRJ_CD});
-                                selectobj();
-                                inspector.updateCell();
-                              inspector.remove();
-                                dialog.close();
-                            },
-                            error: function (xhr, status, error) {
-                            }
-                        });*/
-                    }
-                });
-                dialog.open(); 
-                
-                
-                
-                
-                
             }, this);
-            
-            
-            
-            
-            
         },
 
         
@@ -1406,9 +1365,9 @@ function getOnlineDate(cellId, type) {
 
             //新增图元时！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！需更行对象表，及其选中对象
             this.graph.on('add', function (cell) {
-
+            	alert("sdad");
                 var cellView = paper.findViewByModel(cell);
-                if (cell.isElement() && cell.get('type') != 'basic.Text') {
+               /* if (cell.isElement() && cell.get('type') != 'basic.Text') {
                     Remove();
                     getOBJ_CD = cell.toJSON().id;
                     getOBJ_CD = getOBJ_CD.substring(0, 8) + getOBJ_CD.substring(9, 13) + getOBJ_CD.substring(14, 18) + getOBJ_CD.substring(19, 23) + getOBJ_CD.substring(24, 36);
@@ -1604,7 +1563,7 @@ function getOnlineDate(cellId, type) {
                     });
 
 
-                }
+                }*/
                 //              else if(cell.isLink()) {
                 //                  var sourceId = cell.toJSON().source.id; //源cellId
                 //                  var sourcePortId = cell.toJSON().source.port;//源端点id

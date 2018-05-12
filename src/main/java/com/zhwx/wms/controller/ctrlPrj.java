@@ -32,15 +32,28 @@ public class ctrlPrj {
 	//2.解析json需要的对象
 	JSONObject jo=new JSONObject();
 	
-	//保存 编辑工程时  打开拓扑图需要的信息 到文本文件中
+	 
+	//拓扑检查任务分配
+	@RequestMapping(value="/checkGraph",produces = "application/json; charset=utf-8") //@RequestParam("uid") int uid,
+    @ResponseBody 
+    public void checkGraph(@RequestBody String param){
+			//前台要先提醒用户先保存，然后把工程对应的ID发给我
+			//System.out.println(param);
+    		JSONObject sjo =  JSON.parseObject(param);
+    		System.out.println(param);
+   	    	//System.out.println(sjo.getString("modifyData").toString());
+    		//return 	ps.checkGraph(sjo.getString("PRJ_CD").toString());
+    		ps.checkGraph();
+    }
 	
+	//保存 编辑工程时  打开拓扑图需要的信息 到文本文件中
 	@RequestMapping(value="/saveGraph",produces = "application/json; charset=utf-8") //@RequestParam("uid") int uid,
     @ResponseBody 
     public String saveGraph(@RequestBody String param){
 			//System.out.println(param);
     		JSONObject sjo =  jo.parseObject(param);
     		//System.out.println(sjo);
-   	    	//System.out.println(sjo.getString("Graph").toString());
+   	    	System.out.println(sjo.getString("modifyData").toString());
    	    	return ps.savgraphData(sjo.getString("PRJ_CD").toString(), sjo.getString("Graph").toString());
     }
 	

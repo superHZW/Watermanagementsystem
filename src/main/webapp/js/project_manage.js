@@ -15,7 +15,7 @@ $(function() {
 		var value = $('#projectName').val();
 		if(value != null || value != '' || value != undefined) {
 			
-			//alert(url+"345");
+			//alert(url+"34	5");
 			
 			$.ajax({
 				url: url + 'newPrj',

@@ -15,7 +15,14 @@ public class userService {
 	public UserMapper um;
 	Map<String,Object> hm =  new HashMap<>();
 	public String selectBylogin (String userName, String password) {
-		User user =um.selectBylogin(userName, password);
+		System.out.println(userName+" "+password);
+		User u = new User();
+		u.setName(userName);
+		u.setPassword(password);
+		User user =um.selectBylogin(u);
+		
+		System.out.println(user.getName());
+		
 		if(user==null) {
 			hm.put("msg","user_or_pass_error");
 			hm.put("id", "null");

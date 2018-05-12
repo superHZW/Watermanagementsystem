@@ -164,8 +164,8 @@
     select 
     <include refid="Base_Column_List" />
     from sys_user
-    where USER_NAME = #{0} And
-     PASSWORD = #{1}
+    where USER_NAME = #{userName,jdbcType=VARCHAR} And
+     PASSWORD = #{password,jdbcType=VARCHAR}
   </select>
   
     <update id="updatePassword" parameterType="com.zhwx.wms.entity.User">

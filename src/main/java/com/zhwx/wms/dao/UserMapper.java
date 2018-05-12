@@ -1,5 +1,7 @@
 package com.zhwx.wms.dao;
 
+import java.util.ArrayList;
+
 import com.zhwx.wms.entity.User;
 
 public interface UserMapper {
@@ -14,4 +16,10 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User selectBylogin(User u);
+    	
+	int updatePassword(String id,String password,String pastpassword);
+	
+	User selectById(String id);
 }

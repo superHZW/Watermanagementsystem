@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhwx.wms.dao.PipeMapper">
+  <resultMap id="BaseResultMap" type="com.zhwx.wms.entity.Pipe">
+    <id column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName" />
+    <result column="BELONG_TO_PCODE" jdbcType="VARCHAR" property="belongToPcode" />
+    <result column="BEGIN_STAKE_MARK" jdbcType="DOUBLE" property="beginStakeMark" />
+    <result column="END_STAKE_MARK" jdbcType="DOUBLE" property="endStakeMark" />
+    <result column="IN_HIGHT" jdbcType="DOUBLE" property="inHight" />
+    <result column="OUT_HIGHT" jdbcType="DOUBLE" property="outHight" />
+    <result column="PIPE_MATE" jdbcType="VARCHAR" property="pipeMate" />
+    <result column="EQUIMENT_LENGTH" jdbcType="DOUBLE" property="equimentLength" />
+    <result column="SLOPE" jdbcType="DOUBLE" property="slope" />
+    <result column="SHAPE" jdbcType="VARCHAR" property="shape" />
+    <result column="WATER_POWER" jdbcType="DOUBLE" property="waterPower" />
+    <result column="ROUGHNESS" jdbcType="DOUBLE" property="roughness" />
+    <result column="YCXS" jdbcType="DOUBLE" property="ycxs" />
+    <result column="YCSS" jdbcType="DOUBLE" property="ycss" />
+    <result column="TJTXML" jdbcType="DOUBLE" property="tjtxml" />
+    <result column="INI_Q" jdbcType="DOUBLE" property="iniQ" />
+    <result column="RESULT_Q" jdbcType="DOUBLE" property="resultQ" />
+    <result column="DESIGN_PRESSURE" jdbcType="DOUBLE" property="designPressure" />
+    <result column="SCBS" jdbcType="DOUBLE" property="scbs" />
+    <result column="DESIGN_V" jdbcType="DOUBLE" property="designV" />
+    <result column="PIPE_COUNT" jdbcType="INTEGER" property="pipeCount" />
+    <result column="INSIDE_P" jdbcType="INTEGER" property="insideP" />
+    <result column="PIPE_INSIDE_R" jdbcType="DOUBLE" property="pipeInsideR" />
+    <result column="PIPE_THICK" jdbcType="DOUBLE" property="pipeThick" />
+    <result column="CYDJ" jdbcType="VARCHAR" property="cydj" />
+    <result column="QHYL" jdbcType="DOUBLE" property="qhyl" />
+    <result column="B" jdbcType="DOUBLE" property="b" />
+    <result column="R" jdbcType="DOUBLE" property="r" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, BEGIN_STAKE_MARK, END_STAKE_MARK, IN_HIGHT, 
+    OUT_HIGHT, PIPE_MATE, EQUIMENT_LENGTH, SLOPE, SHAPE, WATER_POWER, ROUGHNESS, YCXS, 
+    YCSS, TJTXML, INI_Q, RESULT_Q, DESIGN_PRESSURE, SCBS, DESIGN_V, PIPE_COUNT, INSIDE_P, 
+    PIPE_INSIDE_R, PIPE_THICK, CYDJ, QHYL, B, R, NOTE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prj_gd_b
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from prj_gd_b
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from prj_gd_b
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhwx.wms.entity.Pipe">
+    insert into prj_gd_b (DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, 
+      BEGIN_STAKE_MARK, END_STAKE_MARK, IN_HIGHT, 
+      OUT_HIGHT, PIPE_MATE, EQUIMENT_LENGTH, 
+      SLOPE, SHAPE, WATER_POWER, 
+      ROUGHNESS, YCXS, YCSS, 
+      TJTXML, INI_Q, RESULT_Q, 
+      DESIGN_PRESSURE, SCBS, DESIGN_V, 
+      PIPE_COUNT, INSIDE_P, PIPE_INSIDE_R, 
+      PIPE_THICK, CYDJ, QHYL, 
+      B, R, NOTE)
+    values (#{deviceCode,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{belongToPcode,jdbcType=VARCHAR}, 
+      #{beginStakeMark,jdbcType=DOUBLE}, #{endStakeMark,jdbcType=DOUBLE}, #{inHight,jdbcType=DOUBLE}, 
+      #{outHight,jdbcType=DOUBLE}, #{pipeMate,jdbcType=VARCHAR}, #{equimentLength,jdbcType=DOUBLE}, 
+      #{slope,jdbcType=DOUBLE}, #{shape,jdbcType=VARCHAR}, #{waterPower,jdbcType=DOUBLE}, 
+      #{roughness,jdbcType=DOUBLE}, #{ycxs,jdbcType=DOUBLE}, #{ycss,jdbcType=DOUBLE}, 
+      #{tjtxml,jdbcType=DOUBLE}, #{iniQ,jdbcType=DOUBLE}, #{resultQ,jdbcType=DOUBLE}, 
+      #{designPressure,jdbcType=DOUBLE}, #{scbs,jdbcType=DOUBLE}, #{designV,jdbcType=DOUBLE}, 
+      #{pipeCount,jdbcType=INTEGER}, #{insideP,jdbcType=INTEGER}, #{pipeInsideR,jdbcType=DOUBLE}, 
+      #{pipeThick,jdbcType=DOUBLE}, #{cydj,jdbcType=VARCHAR}, #{qhyl,jdbcType=DOUBLE}, 
+      #{b,jdbcType=DOUBLE}, #{r,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhwx.wms.entity.Pipe">
+    insert into prj_gd_b
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceCode != null">
+        DEVICE_CODE,
+      </if>
+      <if test="deviceName != null">
+        DEVICE_NAME,
+      </if>
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE,
+      </if>
+      <if test="beginStakeMark != null">
+        BEGIN_STAKE_MARK,
+      </if>
+      <if test="endStakeMark != null">
+        END_STAKE_MARK,
+      </if>
+      <if test="inHight != null">
+        IN_HIGHT,
+      </if>
+      <if test="outHight != null">
+        OUT_HIGHT,
+      </if>
+      <if test="pipeMate != null">
+        PIPE_MATE,
+      </if>
+      <if test="equimentLength != null">
+        EQUIMENT_LENGTH,
+      </if>
+      <if test="slope != null">
+        SLOPE,
+      </if>
+      <if test="shape != null">
+        SHAPE,
+      </if>
+      <if test="waterPower != null">
+        WATER_POWER,
+      </if>
+      <if test="roughness != null">
+        ROUGHNESS,
+      </if>
+      <if test="ycxs != null">
+        YCXS,
+      </if>
+      <if test="ycss != null">
+        YCSS,
+      </if>
+      <if test="tjtxml != null">
+        TJTXML,
+      </if>
+      <if test="iniQ != null">
+        INI_Q,
+      </if>
+      <if test="resultQ != null">
+        RESULT_Q,
+      </if>
+      <if test="designPressure != null">
+        DESIGN_PRESSURE,
+      </if>
+      <if test="scbs != null">
+        SCBS,
+      </if>
+      <if test="designV != null">
+        DESIGN_V,
+      </if>
+      <if test="pipeCount != null">
+        PIPE_COUNT,
+      </if>
+      <if test="insideP != null">
+        INSIDE_P,
+      </if>
+      <if test="pipeInsideR != null">
+        PIPE_INSIDE_R,
+      </if>
+      <if test="pipeThick != null">
+        PIPE_THICK,
+      </if>
+      <if test="cydj != null">
+        CYDJ,
+      </if>
+      <if test="qhyl != null">
+        QHYL,
+      </if>
+      <if test="b != null">
+        B,
+      </if>
+      <if test="r != null">
+        R,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToPcode != null">
+        #{belongToPcode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginStakeMark != null">
+        #{beginStakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="endStakeMark != null">
+        #{endStakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="inHight != null">
+        #{inHight,jdbcType=DOUBLE},
+      </if>
+      <if test="outHight != null">
+        #{outHight,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeMate != null">
+        #{pipeMate,jdbcType=VARCHAR},
+      </if>
+      <if test="equimentLength != null">
+        #{equimentLength,jdbcType=DOUBLE},
+      </if>
+      <if test="slope != null">
+        #{slope,jdbcType=DOUBLE},
+      </if>
+      <if test="shape != null">
+        #{shape,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPower != null">
+        #{waterPower,jdbcType=DOUBLE},
+      </if>
+      <if test="roughness != null">
+        #{roughness,jdbcType=DOUBLE},
+      </if>
+      <if test="ycxs != null">
+        #{ycxs,jdbcType=DOUBLE},
+      </if>
+      <if test="ycss != null">
+        #{ycss,jdbcType=DOUBLE},
+      </if>
+      <if test="tjtxml != null">
+        #{tjtxml,jdbcType=DOUBLE},
+      </if>
+      <if test="iniQ != null">
+        #{iniQ,jdbcType=DOUBLE},
+      </if>
+      <if test="resultQ != null">
+        #{resultQ,jdbcType=DOUBLE},
+      </if>
+      <if test="designPressure != null">
+        #{designPressure,jdbcType=DOUBLE},
+      </if>
+      <if test="scbs != null">
+        #{scbs,jdbcType=DOUBLE},
+      </if>
+      <if test="designV != null">
+        #{designV,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeCount != null">
+        #{pipeCount,jdbcType=INTEGER},
+      </if>
+      <if test="insideP != null">
+        #{insideP,jdbcType=INTEGER},
+      </if>
+      <if test="pipeInsideR != null">
+        #{pipeInsideR,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeThick != null">
+        #{pipeThick,jdbcType=DOUBLE},
+      </if>
+      <if test="cydj != null">
+        #{cydj,jdbcType=VARCHAR},
+      </if>
+      <if test="qhyl != null">
+        #{qhyl,jdbcType=DOUBLE},
+      </if>
+      <if test="b != null">
+        #{b,jdbcType=DOUBLE},
+      </if>
+      <if test="r != null">
+        #{r,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhwx.wms.entity.Pipe">
+    update prj_gd_b
+    <set>
+      <if test="deviceName != null">
+        DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
+      </if>
+      <if test="beginStakeMark != null">
+        BEGIN_STAKE_MARK = #{beginStakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="endStakeMark != null">
+        END_STAKE_MARK = #{endStakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="inHight != null">
+        IN_HIGHT = #{inHight,jdbcType=DOUBLE},
+      </if>
+      <if test="outHight != null">
+        OUT_HIGHT = #{outHight,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeMate != null">
+        PIPE_MATE = #{pipeMate,jdbcType=VARCHAR},
+      </if>
+      <if test="equimentLength != null">
+        EQUIMENT_LENGTH = #{equimentLength,jdbcType=DOUBLE},
+      </if>
+      <if test="slope != null">
+        SLOPE = #{slope,jdbcType=DOUBLE},
+      </if>
+      <if test="shape != null">
+        SHAPE = #{shape,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPower != null">
+        WATER_POWER = #{waterPower,jdbcType=DOUBLE},
+      </if>
+      <if test="roughness != null">
+        ROUGHNESS = #{roughness,jdbcType=DOUBLE},
+      </if>
+      <if test="ycxs != null">
+        YCXS = #{ycxs,jdbcType=DOUBLE},
+      </if>
+      <if test="ycss != null">
+        YCSS = #{ycss,jdbcType=DOUBLE},
+      </if>
+      <if test="tjtxml != null">
+        TJTXML = #{tjtxml,jdbcType=DOUBLE},
+      </if>
+      <if test="iniQ != null">
+        INI_Q = #{iniQ,jdbcType=DOUBLE},
+      </if>
+      <if test="resultQ != null">
+        RESULT_Q = #{resultQ,jdbcType=DOUBLE},
+      </if>
+      <if test="designPressure != null">
+        DESIGN_PRESSURE = #{designPressure,jdbcType=DOUBLE},
+      </if>
+      <if test="scbs != null">
+        SCBS = #{scbs,jdbcType=DOUBLE},
+      </if>
+      <if test="designV != null">
+        DESIGN_V = #{designV,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeCount != null">
+        PIPE_COUNT = #{pipeCount,jdbcType=INTEGER},
+      </if>
+      <if test="insideP != null">
+        INSIDE_P = #{insideP,jdbcType=INTEGER},
+      </if>
+      <if test="pipeInsideR != null">
+        PIPE_INSIDE_R = #{pipeInsideR,jdbcType=DOUBLE},
+      </if>
+      <if test="pipeThick != null">
+        PIPE_THICK = #{pipeThick,jdbcType=DOUBLE},
+      </if>
+      <if test="cydj != null">
+        CYDJ = #{cydj,jdbcType=VARCHAR},
+      </if>
+      <if test="qhyl != null">
+        QHYL = #{qhyl,jdbcType=DOUBLE},
+      </if>
+      <if test="b != null">
+        B = #{b,jdbcType=DOUBLE},
+      </if>
+      <if test="r != null">
+        R = #{r,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhwx.wms.entity.Pipe">
+    update prj_gd_b
+    set DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
+      BEGIN_STAKE_MARK = #{beginStakeMark,jdbcType=DOUBLE},
+      END_STAKE_MARK = #{endStakeMark,jdbcType=DOUBLE},
+      IN_HIGHT = #{inHight,jdbcType=DOUBLE},
+      OUT_HIGHT = #{outHight,jdbcType=DOUBLE},
+      PIPE_MATE = #{pipeMate,jdbcType=VARCHAR},
+      EQUIMENT_LENGTH = #{equimentLength,jdbcType=DOUBLE},
+      SLOPE = #{slope,jdbcType=DOUBLE},
+      SHAPE = #{shape,jdbcType=VARCHAR},
+      WATER_POWER = #{waterPower,jdbcType=DOUBLE},
+      ROUGHNESS = #{roughness,jdbcType=DOUBLE},
+      YCXS = #{ycxs,jdbcType=DOUBLE},
+      YCSS = #{ycss,jdbcType=DOUBLE},
+      TJTXML = #{tjtxml,jdbcType=DOUBLE},
+      INI_Q = #{iniQ,jdbcType=DOUBLE},
+      RESULT_Q = #{resultQ,jdbcType=DOUBLE},
+      DESIGN_PRESSURE = #{designPressure,jdbcType=DOUBLE},
+      SCBS = #{scbs,jdbcType=DOUBLE},
+      DESIGN_V = #{designV,jdbcType=DOUBLE},
+      PIPE_COUNT = #{pipeCount,jdbcType=INTEGER},
+      INSIDE_P = #{insideP,jdbcType=INTEGER},
+      PIPE_INSIDE_R = #{pipeInsideR,jdbcType=DOUBLE},
+      PIPE_THICK = #{pipeThick,jdbcType=DOUBLE},
+      CYDJ = #{cydj,jdbcType=VARCHAR},
+      QHYL = #{qhyl,jdbcType=DOUBLE},
+      B = #{b,jdbcType=DOUBLE},
+      R = #{r,jdbcType=DOUBLE},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

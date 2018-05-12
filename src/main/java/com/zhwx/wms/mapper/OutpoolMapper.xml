@@ -2,58 +2,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhwx.wms.dao.OutpoolMapper">
   <resultMap id="BaseResultMap" type="com.zhwx.wms.entity.Outpool">
-    <id column="CNW_CD" jdbcType="INTEGER" property="cnwCd" />
-    <result column="CNW_NAME" jdbcType="VARCHAR" property="cnwName" />
-    <result column="NODE_CD" jdbcType="INTEGER" property="nodeCd" />
-    <result column="OBJ_CD" jdbcType="VARCHAR" property="objCd" />
-    <result column="LGTD" jdbcType="DOUBLE" property="lgtd" />
+    <id column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName" />
+    <result column="BELONG_TO_PCODE" jdbcType="VARCHAR" property="belongToPcode" />
+    <result column="LGTD" jdbcType="VARCHAR" property="lgtd" />
     <result column="LTTD" jdbcType="DOUBLE" property="lttd" />
-    <result column="Q" jdbcType="DOUBLE" property="q" />
-    <result column="OUT_W" jdbcType="DOUBLE" property="outW" />
+    <result column="DESIGN_Q" jdbcType="DOUBLE" property="designQ" />
+    <result column="OUTPOOL_LEVEL" jdbcType="DOUBLE" property="outpoolLevel" />
     <result column="PIPE_SIZE" jdbcType="DOUBLE" property="pipeSize" />
-    <result column="PIPE_C" jdbcType="INTEGER" property="pipeC" />
-    <result column="SZFD" jdbcType="CHAR" property="szfd" />
-    <result column="Z" jdbcType="DOUBLE" property="z" />
-    <result column="NT" jdbcType="VARCHAR" property="nt" />
+    <result column="PIPE_COUNT" jdbcType="INTEGER" property="pipeCount" />
+    <result column="SECTION_IN" jdbcType="VARCHAR" property="sectionIn" />
+    <result column="WATER_HEIGHT" jdbcType="DOUBLE" property="waterHeight" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
-    CNW_CD, CNW_NAME, NODE_CD, OBJ_CD, LGTD, LTTD, Q, OUT_W, PIPE_SIZE, PIPE_C, SZFD, 
-    Z, NT
+    DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, LGTD, LTTD, DESIGN_Q, OUTPOOL_LEVEL, PIPE_SIZE, 
+    PIPE_COUNT, SECTION_IN, WATER_HEIGHT, NOTE
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from prj_out_pool_b
-    where CNW_CD = #{cnwCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from prj_out_pool_b
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from prj_out_pool_b
-    where CNW_CD = #{cnwCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zhwx.wms.entity.Outpool">
-    insert into prj_out_pool_b (CNW_CD, CNW_NAME, NODE_CD, 
-      OBJ_CD, LGTD, LTTD, Q, 
-      OUT_W, PIPE_SIZE, PIPE_C, 
-      SZFD, Z, NT)
-    values (#{cnwCd,jdbcType=INTEGER}, #{cnwName,jdbcType=VARCHAR}, #{nodeCd,jdbcType=INTEGER}, 
-      #{objCd,jdbcType=VARCHAR}, #{lgtd,jdbcType=DOUBLE}, #{lttd,jdbcType=DOUBLE}, #{q,jdbcType=DOUBLE}, 
-      #{outW,jdbcType=DOUBLE}, #{pipeSize,jdbcType=DOUBLE}, #{pipeC,jdbcType=INTEGER}, 
-      #{szfd,jdbcType=CHAR}, #{z,jdbcType=DOUBLE}, #{nt,jdbcType=VARCHAR})
+    insert into prj_out_pool_b (DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, 
+      LGTD, LTTD, DESIGN_Q, 
+      OUTPOOL_LEVEL, PIPE_SIZE, PIPE_COUNT, 
+      SECTION_IN, WATER_HEIGHT, NOTE
+      )
+    values (#{deviceCode,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{belongToPcode,jdbcType=VARCHAR}, 
+      #{lgtd,jdbcType=VARCHAR}, #{lttd,jdbcType=DOUBLE}, #{designQ,jdbcType=DOUBLE}, 
+      #{outpoolLevel,jdbcType=DOUBLE}, #{pipeSize,jdbcType=DOUBLE}, #{pipeCount,jdbcType=INTEGER}, 
+      #{sectionIn,jdbcType=VARCHAR}, #{waterHeight,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zhwx.wms.entity.Outpool">
     insert into prj_out_pool_b
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cnwCd != null">
-        CNW_CD,
+      <if test="deviceCode != null">
+        DEVICE_CODE,
       </if>
-      <if test="cnwName != null">
-        CNW_NAME,
+      <if test="deviceName != null">
+        DEVICE_NAME,
       </if>
-      <if test="nodeCd != null">
-        NODE_CD,
-      </if>
-      <if test="objCd != null">
-        OBJ_CD,
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE,
       </if>
       <if test="lgtd != null">
         LGTD,
@@ -61,126 +62,119 @@
       <if test="lttd != null">
         LTTD,
       </if>
-      <if test="q != null">
-        Q,
+      <if test="designQ != null">
+        DESIGN_Q,
       </if>
-      <if test="outW != null">
-        OUT_W,
+      <if test="outpoolLevel != null">
+        OUTPOOL_LEVEL,
       </if>
       <if test="pipeSize != null">
         PIPE_SIZE,
       </if>
-      <if test="pipeC != null">
-        PIPE_C,
+      <if test="pipeCount != null">
+        PIPE_COUNT,
       </if>
-      <if test="szfd != null">
-        SZFD,
+      <if test="sectionIn != null">
+        SECTION_IN,
       </if>
-      <if test="z != null">
-        Z,
+      <if test="waterHeight != null">
+        WATER_HEIGHT,
       </if>
-      <if test="nt != null">
-        NT,
+      <if test="note != null">
+        NOTE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cnwCd != null">
-        #{cnwCd,jdbcType=INTEGER},
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
       </if>
-      <if test="cnwName != null">
-        #{cnwName,jdbcType=VARCHAR},
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
       </if>
-      <if test="nodeCd != null">
-        #{nodeCd,jdbcType=INTEGER},
-      </if>
-      <if test="objCd != null">
-        #{objCd,jdbcType=VARCHAR},
+      <if test="belongToPcode != null">
+        #{belongToPcode,jdbcType=VARCHAR},
       </if>
       <if test="lgtd != null">
-        #{lgtd,jdbcType=DOUBLE},
+        #{lgtd,jdbcType=VARCHAR},
       </if>
       <if test="lttd != null">
         #{lttd,jdbcType=DOUBLE},
       </if>
-      <if test="q != null">
-        #{q,jdbcType=DOUBLE},
+      <if test="designQ != null">
+        #{designQ,jdbcType=DOUBLE},
       </if>
-      <if test="outW != null">
-        #{outW,jdbcType=DOUBLE},
+      <if test="outpoolLevel != null">
+        #{outpoolLevel,jdbcType=DOUBLE},
       </if>
       <if test="pipeSize != null">
         #{pipeSize,jdbcType=DOUBLE},
       </if>
-      <if test="pipeC != null">
-        #{pipeC,jdbcType=INTEGER},
+      <if test="pipeCount != null">
+        #{pipeCount,jdbcType=INTEGER},
       </if>
-      <if test="szfd != null">
-        #{szfd,jdbcType=CHAR},
+      <if test="sectionIn != null">
+        #{sectionIn,jdbcType=VARCHAR},
       </if>
-      <if test="z != null">
-        #{z,jdbcType=DOUBLE},
+      <if test="waterHeight != null">
+        #{waterHeight,jdbcType=DOUBLE},
       </if>
-      <if test="nt != null">
-        #{nt,jdbcType=VARCHAR},
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zhwx.wms.entity.Outpool">
     update prj_out_pool_b
     <set>
-      <if test="cnwName != null">
-        CNW_NAME = #{cnwName,jdbcType=VARCHAR},
+      <if test="deviceName != null">
+        DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
       </if>
-      <if test="nodeCd != null">
-        NODE_CD = #{nodeCd,jdbcType=INTEGER},
-      </if>
-      <if test="objCd != null">
-        OBJ_CD = #{objCd,jdbcType=VARCHAR},
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
       </if>
       <if test="lgtd != null">
-        LGTD = #{lgtd,jdbcType=DOUBLE},
+        LGTD = #{lgtd,jdbcType=VARCHAR},
       </if>
       <if test="lttd != null">
         LTTD = #{lttd,jdbcType=DOUBLE},
       </if>
-      <if test="q != null">
-        Q = #{q,jdbcType=DOUBLE},
+      <if test="designQ != null">
+        DESIGN_Q = #{designQ,jdbcType=DOUBLE},
       </if>
-      <if test="outW != null">
-        OUT_W = #{outW,jdbcType=DOUBLE},
+      <if test="outpoolLevel != null">
+        OUTPOOL_LEVEL = #{outpoolLevel,jdbcType=DOUBLE},
       </if>
       <if test="pipeSize != null">
         PIPE_SIZE = #{pipeSize,jdbcType=DOUBLE},
       </if>
-      <if test="pipeC != null">
-        PIPE_C = #{pipeC,jdbcType=INTEGER},
+      <if test="pipeCount != null">
+        PIPE_COUNT = #{pipeCount,jdbcType=INTEGER},
       </if>
-      <if test="szfd != null">
-        SZFD = #{szfd,jdbcType=CHAR},
+      <if test="sectionIn != null">
+        SECTION_IN = #{sectionIn,jdbcType=VARCHAR},
       </if>
-      <if test="z != null">
-        Z = #{z,jdbcType=DOUBLE},
+      <if test="waterHeight != null">
+        WATER_HEIGHT = #{waterHeight,jdbcType=DOUBLE},
       </if>
-      <if test="nt != null">
-        NT = #{nt,jdbcType=VARCHAR},
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where CNW_CD = #{cnwCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhwx.wms.entity.Outpool">
     update prj_out_pool_b
-    set CNW_NAME = #{cnwName,jdbcType=VARCHAR},
-      NODE_CD = #{nodeCd,jdbcType=INTEGER},
-      OBJ_CD = #{objCd,jdbcType=VARCHAR},
-      LGTD = #{lgtd,jdbcType=DOUBLE},
+    set DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
+      LGTD = #{lgtd,jdbcType=VARCHAR},
       LTTD = #{lttd,jdbcType=DOUBLE},
-      Q = #{q,jdbcType=DOUBLE},
-      OUT_W = #{outW,jdbcType=DOUBLE},
+      DESIGN_Q = #{designQ,jdbcType=DOUBLE},
+      OUTPOOL_LEVEL = #{outpoolLevel,jdbcType=DOUBLE},
       PIPE_SIZE = #{pipeSize,jdbcType=DOUBLE},
-      PIPE_C = #{pipeC,jdbcType=INTEGER},
-      SZFD = #{szfd,jdbcType=CHAR},
-      Z = #{z,jdbcType=DOUBLE},
-      NT = #{nt,jdbcType=VARCHAR}
-    where CNW_CD = #{cnwCd,jdbcType=INTEGER}
+      PIPE_COUNT = #{pipeCount,jdbcType=INTEGER},
+      SECTION_IN = #{sectionIn,jdbcType=VARCHAR},
+      WATER_HEIGHT = #{waterHeight,jdbcType=DOUBLE},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </update>
 </mapper>

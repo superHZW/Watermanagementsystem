@@ -50,12 +50,10 @@
     
     <table tableName="sys_user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
-     <table tableName="prj_intakesump_b" domainObjectName="Intakesump"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-    </table>
+
     <table tableName="prj_node_b" domainObjectName="Node"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
-    <table tableName="prj_out_pool_b" domainObjectName="Outpool"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-    </table>
+
     <table tableName="prj_valve_b" domainObjectName="Valve"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
     <table tableName="test" domainObjectName="test"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
@@ -63,8 +61,17 @@
     <table tableName="prj" domainObjectName="Project"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
     -->
-    <table tableName="prj_graph" domainObjectName="Prjgraph"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    <table tableName="prj_intakesump_b" domainObjectName="Intakesump"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>  
+    <table tableName="prj_out_pool_b" domainObjectName="Outpool"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
     </table>
+    <table tableName="prj_valve_b" domainObjectName="Valve"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="prj_gd_b" domainObjectName="Pipe"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <!-- 
+    <table tableName="prj_graph" domainObjectName="Prjgraph"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>-->
    </context>
 
 </generatorConfiguration>

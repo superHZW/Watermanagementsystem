@@ -1,62 +1,54 @@
 package com.zhwx.wms.entity;
 
 public class Intakesump {
-    private Integer cnwCd;
+    private String deviceCode;
 
-    private Integer nodeCd;
+    private String deviceName;
 
-    private String cnwNm;
-
-    private String objCd;
+    private String belongToPcode;
 
     private Double lgtd;
 
     private Double lttd;
 
-    private Double q;
+    private Double designQ;
+
+    private Double intakesumpLevel;
 
     private Double pipeSize;
 
-    private Integer pipeC;
+    private Integer pipeCount;
 
-    private Double mp;
+    private Double designPressure;
 
-    private String szfd;
+    private String sectionIn;
 
-    private Double z;
+    private Double waterHeight;
 
-    private String nt;
+    private String note;
 
-    public Integer getCnwCd() {
-        return cnwCd;
+    public String getDeviceCode() {
+        return deviceCode;
     }
 
-    public void setCnwCd(Integer cnwCd) {
-        this.cnwCd = cnwCd;
+    public void setDeviceCode(String deviceCode) {
+        this.deviceCode = deviceCode == null ? null : deviceCode.trim();
     }
 
-    public Integer getNodeCd() {
-        return nodeCd;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setNodeCd(Integer nodeCd) {
-        this.nodeCd = nodeCd;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName == null ? null : deviceName.trim();
     }
 
-    public String getCnwNm() {
-        return cnwNm;
+    public String getBelongToPcode() {
+        return belongToPcode;
     }
 
-    public void setCnwNm(String cnwNm) {
-        this.cnwNm = cnwNm == null ? null : cnwNm.trim();
-    }
-
-    public String getObjCd() {
-        return objCd;
-    }
-
-    public void setObjCd(String objCd) {
-        this.objCd = objCd == null ? null : objCd.trim();
+    public void setBelongToPcode(String belongToPcode) {
+        this.belongToPcode = belongToPcode == null ? null : belongToPcode.trim();
     }
 
     public Double getLgtd() {
@@ -75,12 +67,20 @@ public class Intakesump {
         this.lttd = lttd;
     }
 
-    public Double getQ() {
-        return q;
+    public Double getDesignQ() {
+        return designQ;
     }
 
-    public void setQ(Double q) {
-        this.q = q;
+    public void setDesignQ(Double designQ) {
+        this.designQ = designQ;
+    }
+
+    public Double getIntakesumpLevel() {
+        return intakesumpLevel;
+    }
+
+    public void setIntakesumpLevel(Double intakesumpLevel) {
+        this.intakesumpLevel = intakesumpLevel;
     }
 
     public Double getPipeSize() {
@@ -91,43 +91,43 @@ public class Intakesump {
         this.pipeSize = pipeSize;
     }
 
-    public Integer getPipeC() {
-        return pipeC;
+    public Integer getPipeCount() {
+        return pipeCount;
     }
 
-    public void setPipeC(Integer pipeC) {
-        this.pipeC = pipeC;
+    public void setPipeCount(Integer pipeCount) {
+        this.pipeCount = pipeCount;
     }
 
-    public Double getMp() {
-        return mp;
+    public Double getDesignPressure() {
+        return designPressure;
     }
 
-    public void setMp(Double mp) {
-        this.mp = mp;
+    public void setDesignPressure(Double designPressure) {
+        this.designPressure = designPressure;
     }
 
-    public String getSzfd() {
-        return szfd;
+    public String getSectionIn() {
+        return sectionIn;
     }
 
-    public void setSzfd(String szfd) {
-        this.szfd = szfd == null ? null : szfd.trim();
+    public void setSectionIn(String sectionIn) {
+        this.sectionIn = sectionIn == null ? null : sectionIn.trim();
     }
 
-    public Double getZ() {
-        return z;
+    public Double getWaterHeight() {
+        return waterHeight;
     }
 
-    public void setZ(Double z) {
-        this.z = z;
+    public void setWaterHeight(Double waterHeight) {
+        this.waterHeight = waterHeight;
     }
 
-    public String getNt() {
-        return nt;
+    public String getNote() {
+        return note;
     }
 
-    public void setNt(String nt) {
-        this.nt = nt == null ? null : nt.trim();
+    public void setNote(String note) {
+        this.note = note == null ? null : note.trim();
     }
 }

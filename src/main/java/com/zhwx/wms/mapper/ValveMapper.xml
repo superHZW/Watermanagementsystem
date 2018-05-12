@@ -2,70 +2,102 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhwx.wms.dao.ValveMapper">
   <resultMap id="BaseResultMap" type="com.zhwx.wms.entity.Valve">
-    <id column="VAV_CD" jdbcType="INTEGER" property="vavCd" />
-    <result column="NODE_CD" jdbcType="INTEGER" property="nodeCd" />
+    <id column="DEVICE_CODE" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="DEVICE_NAME" jdbcType="VARCHAR" property="deviceName" />
+    <result column="BELONG_TO_PCODE" jdbcType="VARCHAR" property="belongToPcode" />
+    <result column="VAV_TYPE" jdbcType="VARCHAR" property="vavType" />
+    <result column="IS_OPERATE" jdbcType="INTEGER" property="isOperate" />
+    <result column="STAKE_MARK" jdbcType="DOUBLE" property="stakeMark" />
+    <result column="VAV_WORK" jdbcType="VARCHAR" property="vavWork" />
+    <result column="VAV_SEC_IN" jdbcType="VARCHAR" property="vavSecIn" />
     <result column="LGTD" jdbcType="DOUBLE" property="lgtd" />
     <result column="LTTD" jdbcType="DOUBLE" property="lttd" />
-    <result column="VAV_NM" jdbcType="VARCHAR" property="vavNm" />
-    <result column="VAV_TYPE" jdbcType="CHAR" property="vavType" />
-    <result column="VAV_WORK" jdbcType="CHAR" property="vavWork" />
     <result column="VAV_SIZE" jdbcType="DOUBLE" property="vavSize" />
-    <result column="MP" jdbcType="DOUBLE" property="mp" />
-    <result column="ISMP" jdbcType="CHAR" property="ismp" />
-    <result column="MAXMP" jdbcType="VARCHAR" property="maxmp" />
-    <result column="SZFD" jdbcType="CHAR" property="szfd" />
-    <result column="USER_TYPE" jdbcType="CHAR" property="userType" />
-    <result column="AZGC" jdbcType="DOUBLE" property="azgc" />
-    <result column="ISOPERATE" jdbcType="BIT" property="isoperate" />
-    <result column="STAKEMARK" jdbcType="VARCHAR" property="stakemark" />
-    <result column="KD" jdbcType="DOUBLE" property="kd" />
-    <result column="VA_OTHER_Q" jdbcType="DOUBLE" property="vaOtherQ" />
-    <result column="VA_OTHER_MP" jdbcType="DOUBLE" property="vaOtherMp" />
-    <result column="VA_OTHER_SIZE" jdbcType="DOUBLE" property="vaOtherSize" />
-    <result column="N_VALVE" jdbcType="INTEGER" property="nValve" />
-    <result column="KD_V0" jdbcType="DOUBLE" property="kdV0" />
-    <result column="AV" jdbcType="DOUBLE" property="av" />
-    <result column="NT" jdbcType="VARCHAR" property="nt" />
+    <result column="PRESSURE_LEVEL" jdbcType="DOUBLE" property="pressureLevel" />
+    <result column="START_CONDI" jdbcType="VARCHAR" property="startCondi" />
+    <result column="MAX_DELPRE_START" jdbcType="DOUBLE" property="maxDelpreStart" />
+    <result column="USER_TYPE" jdbcType="VARCHAR" property="userType" />
+    <result column="INSTALL_HEIGHT" jdbcType="DOUBLE" property="installHeight" />
+    <result column="INI_OPEN_LEVEL" jdbcType="DOUBLE" property="iniOpenLevel" />
+    <result column="Q" jdbcType="DOUBLE" property="q" />
+    <result column="DESIGN_PRESSURE" jdbcType="DOUBLE" property="designPressure" />
+    <result column="VAV_OTHER_SIZE" jdbcType="DOUBLE" property="vavOtherSize" />
+    <result column="INI_OPENLEVEL_MIN" jdbcType="DOUBLE" property="iniOpenlevelMin" />
+    <result column="PRESSURE_WORK" jdbcType="VARCHAR" property="pressureWork" />
+    <result column="PREW_MAX_DEL" jdbcType="DOUBLE" property="prewMaxDel" />
+    <result column="NVAV_COUNT" jdbcType="INTEGER" property="nvavCount" />
+    <result column="K_ALL_OPEN" jdbcType="DOUBLE" property="kAllOpen" />
+    <result column="VAV_SIDE_S" jdbcType="DOUBLE" property="vavSideS" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
-    VAV_CD, NODE_CD, LGTD, LTTD, VAV_NM, VAV_TYPE, VAV_WORK, VAV_SIZE, MP, ISMP, MAXMP, 
-    SZFD, USER_TYPE, AZGC, ISOPERATE, STAKEMARK, KD, VA_OTHER_Q, VA_OTHER_MP, VA_OTHER_SIZE, 
-    N_VALVE, KD_V0, AV, NT
+    DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, VAV_TYPE, IS_OPERATE, STAKE_MARK, VAV_WORK, 
+    VAV_SEC_IN, LGTD, LTTD, VAV_SIZE, PRESSURE_LEVEL, START_CONDI, MAX_DELPRE_START, 
+    USER_TYPE, INSTALL_HEIGHT, INI_OPEN_LEVEL, Q, DESIGN_PRESSURE, VAV_OTHER_SIZE, INI_OPENLEVEL_MIN, 
+    PRESSURE_WORK, PREW_MAX_DEL, NVAV_COUNT, K_ALL_OPEN, VAV_SIDE_S, NOTE
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from prj_valve_b
-    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from prj_valve_b
+    where VAV_TYPE = #{vavType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from prj_valve_b
-    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.zhwx.wms.entity.Valve">
-    insert into prj_valve_b (VAV_CD, NODE_CD, LGTD, 
-      LTTD, VAV_NM, VAV_TYPE, VAV_WORK, 
-      VAV_SIZE, MP, ISMP, MAXMP, 
-      SZFD, USER_TYPE, AZGC, ISOPERATE, 
-      STAKEMARK, KD, VA_OTHER_Q, 
-      VA_OTHER_MP, VA_OTHER_SIZE, N_VALVE, 
-      KD_V0, AV, NT)
-    values (#{vavCd,jdbcType=INTEGER}, #{nodeCd,jdbcType=INTEGER}, #{lgtd,jdbcType=DOUBLE}, 
-      #{lttd,jdbcType=DOUBLE}, #{vavNm,jdbcType=VARCHAR}, #{vavType,jdbcType=CHAR}, #{vavWork,jdbcType=CHAR}, 
-      #{vavSize,jdbcType=DOUBLE}, #{mp,jdbcType=DOUBLE}, #{ismp,jdbcType=CHAR}, #{maxmp,jdbcType=VARCHAR}, 
-      #{szfd,jdbcType=CHAR}, #{userType,jdbcType=CHAR}, #{azgc,jdbcType=DOUBLE}, #{isoperate,jdbcType=BIT}, 
-      #{stakemark,jdbcType=VARCHAR}, #{kd,jdbcType=DOUBLE}, #{vaOtherQ,jdbcType=DOUBLE}, 
-      #{vaOtherMp,jdbcType=DOUBLE}, #{vaOtherSize,jdbcType=DOUBLE}, #{nValve,jdbcType=INTEGER}, 
-      #{kdV0,jdbcType=DOUBLE}, #{av,jdbcType=DOUBLE}, #{nt,jdbcType=VARCHAR})
+    insert into prj_valve_b (DEVICE_CODE, DEVICE_NAME, BELONG_TO_PCODE, 
+      VAV_TYPE, IS_OPERATE, STAKE_MARK, 
+      VAV_WORK, VAV_SEC_IN, LGTD, 
+      LTTD, VAV_SIZE, PRESSURE_LEVEL, 
+      START_CONDI, MAX_DELPRE_START, USER_TYPE, 
+      INSTALL_HEIGHT, INI_OPEN_LEVEL, Q, 
+      DESIGN_PRESSURE, VAV_OTHER_SIZE, INI_OPENLEVEL_MIN, 
+      PRESSURE_WORK, PREW_MAX_DEL, NVAV_COUNT, 
+      K_ALL_OPEN, VAV_SIDE_S, NOTE
+      )
+    values (#{deviceCode,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{belongToPcode,jdbcType=VARCHAR}, 
+      #{vavType,jdbcType=VARCHAR}, #{isOperate,jdbcType=INTEGER}, #{stakeMark,jdbcType=DOUBLE}, 
+      #{vavWork,jdbcType=VARCHAR}, #{vavSecIn,jdbcType=VARCHAR}, #{lgtd,jdbcType=DOUBLE}, 
+      #{lttd,jdbcType=DOUBLE}, #{vavSize,jdbcType=DOUBLE}, #{pressureLevel,jdbcType=DOUBLE}, 
+      #{startCondi,jdbcType=VARCHAR}, #{maxDelpreStart,jdbcType=DOUBLE}, #{userType,jdbcType=VARCHAR}, 
+      #{installHeight,jdbcType=DOUBLE}, #{iniOpenLevel,jdbcType=DOUBLE}, #{q,jdbcType=DOUBLE}, 
+      #{designPressure,jdbcType=DOUBLE}, #{vavOtherSize,jdbcType=DOUBLE}, #{iniOpenlevelMin,jdbcType=DOUBLE}, 
+      #{pressureWork,jdbcType=VARCHAR}, #{prewMaxDel,jdbcType=DOUBLE}, #{nvavCount,jdbcType=INTEGER}, 
+      #{kAllOpen,jdbcType=DOUBLE}, #{vavSideS,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zhwx.wms.entity.Valve">
     insert into prj_valve_b
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="vavCd != null">
-        VAV_CD,
+      <if test="deviceCode != null">
+        DEVICE_CODE,
       </if>
-      <if test="nodeCd != null">
-        NODE_CD,
+      <if test="deviceName != null">
+        DEVICE_NAME,
+      </if>
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE,
+      </if>
+      <if test="vavType != null">
+        VAV_TYPE,
+      </if>
+      <if test="isOperate != null">
+        IS_OPERATE,
+      </if>
+      <if test="stakeMark != null">
+        STAKE_MARK,
+      </if>
+      <if test="vavWork != null">
+        VAV_WORK,
+      </if>
+      <if test="vavSecIn != null">
+        VAV_SEC_IN,
       </if>
       <if test="lgtd != null">
         LGTD,
@@ -73,73 +105,82 @@
       <if test="lttd != null">
         LTTD,
       </if>
-      <if test="vavNm != null">
-        VAV_NM,
-      </if>
-      <if test="vavType != null">
-        VAV_TYPE,
-      </if>
-      <if test="vavWork != null">
-        VAV_WORK,
-      </if>
       <if test="vavSize != null">
         VAV_SIZE,
       </if>
-      <if test="mp != null">
-        MP,
+      <if test="pressureLevel != null">
+        PRESSURE_LEVEL,
       </if>
-      <if test="ismp != null">
-        ISMP,
+      <if test="startCondi != null">
+        START_CONDI,
       </if>
-      <if test="maxmp != null">
-        MAXMP,
-      </if>
-      <if test="szfd != null">
-        SZFD,
+      <if test="maxDelpreStart != null">
+        MAX_DELPRE_START,
       </if>
       <if test="userType != null">
         USER_TYPE,
       </if>
-      <if test="azgc != null">
-        AZGC,
+      <if test="installHeight != null">
+        INSTALL_HEIGHT,
       </if>
-      <if test="isoperate != null">
-        ISOPERATE,
+      <if test="iniOpenLevel != null">
+        INI_OPEN_LEVEL,
       </if>
-      <if test="stakemark != null">
-        STAKEMARK,
+      <if test="q != null">
+        Q,
       </if>
-      <if test="kd != null">
-        KD,
+      <if test="designPressure != null">
+        DESIGN_PRESSURE,
       </if>
-      <if test="vaOtherQ != null">
-        VA_OTHER_Q,
+      <if test="vavOtherSize != null">
+        VAV_OTHER_SIZE,
       </if>
-      <if test="vaOtherMp != null">
-        VA_OTHER_MP,
+      <if test="iniOpenlevelMin != null">
+        INI_OPENLEVEL_MIN,
       </if>
-      <if test="vaOtherSize != null">
-        VA_OTHER_SIZE,
+      <if test="pressureWork != null">
+        PRESSURE_WORK,
       </if>
-      <if test="nValve != null">
-        N_VALVE,
+      <if test="prewMaxDel != null">
+        PREW_MAX_DEL,
       </if>
-      <if test="kdV0 != null">
-        KD_V0,
+      <if test="nvavCount != null">
+        NVAV_COUNT,
       </if>
-      <if test="av != null">
-        AV,
+      <if test="kAllOpen != null">
+        K_ALL_OPEN,
       </if>
-      <if test="nt != null">
-        NT,
+      <if test="vavSideS != null">
+        VAV_SIDE_S,
+      </if>
+      <if test="note != null">
+        NOTE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="vavCd != null">
-        #{vavCd,jdbcType=INTEGER},
+      <if test="deviceCode != null">
+        #{deviceCode,jdbcType=VARCHAR},
       </if>
-      <if test="nodeCd != null">
-        #{nodeCd,jdbcType=INTEGER},
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToPcode != null">
+        #{belongToPcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vavType != null">
+        #{vavType,jdbcType=VARCHAR},
+      </if>
+      <if test="isOperate != null">
+        #{isOperate,jdbcType=INTEGER},
+      </if>
+      <if test="stakeMark != null">
+        #{stakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="vavWork != null">
+        #{vavWork,jdbcType=VARCHAR},
+      </if>
+      <if test="vavSecIn != null">
+        #{vavSecIn,jdbcType=VARCHAR},
       </if>
       <if test="lgtd != null">
         #{lgtd,jdbcType=DOUBLE},
@@ -147,73 +188,82 @@
       <if test="lttd != null">
         #{lttd,jdbcType=DOUBLE},
       </if>
-      <if test="vavNm != null">
-        #{vavNm,jdbcType=VARCHAR},
-      </if>
-      <if test="vavType != null">
-        #{vavType,jdbcType=CHAR},
-      </if>
-      <if test="vavWork != null">
-        #{vavWork,jdbcType=CHAR},
-      </if>
       <if test="vavSize != null">
         #{vavSize,jdbcType=DOUBLE},
       </if>
-      <if test="mp != null">
-        #{mp,jdbcType=DOUBLE},
+      <if test="pressureLevel != null">
+        #{pressureLevel,jdbcType=DOUBLE},
       </if>
-      <if test="ismp != null">
-        #{ismp,jdbcType=CHAR},
+      <if test="startCondi != null">
+        #{startCondi,jdbcType=VARCHAR},
       </if>
-      <if test="maxmp != null">
-        #{maxmp,jdbcType=VARCHAR},
-      </if>
-      <if test="szfd != null">
-        #{szfd,jdbcType=CHAR},
+      <if test="maxDelpreStart != null">
+        #{maxDelpreStart,jdbcType=DOUBLE},
       </if>
       <if test="userType != null">
-        #{userType,jdbcType=CHAR},
+        #{userType,jdbcType=VARCHAR},
       </if>
-      <if test="azgc != null">
-        #{azgc,jdbcType=DOUBLE},
+      <if test="installHeight != null">
+        #{installHeight,jdbcType=DOUBLE},
       </if>
-      <if test="isoperate != null">
-        #{isoperate,jdbcType=BIT},
+      <if test="iniOpenLevel != null">
+        #{iniOpenLevel,jdbcType=DOUBLE},
       </if>
-      <if test="stakemark != null">
-        #{stakemark,jdbcType=VARCHAR},
+      <if test="q != null">
+        #{q,jdbcType=DOUBLE},
       </if>
-      <if test="kd != null">
-        #{kd,jdbcType=DOUBLE},
+      <if test="designPressure != null">
+        #{designPressure,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherQ != null">
-        #{vaOtherQ,jdbcType=DOUBLE},
+      <if test="vavOtherSize != null">
+        #{vavOtherSize,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherMp != null">
-        #{vaOtherMp,jdbcType=DOUBLE},
+      <if test="iniOpenlevelMin != null">
+        #{iniOpenlevelMin,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherSize != null">
-        #{vaOtherSize,jdbcType=DOUBLE},
+      <if test="pressureWork != null">
+        #{pressureWork,jdbcType=VARCHAR},
       </if>
-      <if test="nValve != null">
-        #{nValve,jdbcType=INTEGER},
+      <if test="prewMaxDel != null">
+        #{prewMaxDel,jdbcType=DOUBLE},
       </if>
-      <if test="kdV0 != null">
-        #{kdV0,jdbcType=DOUBLE},
+      <if test="nvavCount != null">
+        #{nvavCount,jdbcType=INTEGER},
       </if>
-      <if test="av != null">
-        #{av,jdbcType=DOUBLE},
+      <if test="kAllOpen != null">
+        #{kAllOpen,jdbcType=DOUBLE},
       </if>
-      <if test="nt != null">
-        #{nt,jdbcType=VARCHAR},
+      <if test="vavSideS != null">
+        #{vavSideS,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zhwx.wms.entity.Valve">
     update prj_valve_b
     <set>
-      <if test="nodeCd != null">
-        NODE_CD = #{nodeCd,jdbcType=INTEGER},
+      <if test="deviceName != null">
+        DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="belongToPcode != null">
+        BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vavType != null">
+        VAV_TYPE = #{vavType,jdbcType=VARCHAR},
+      </if>
+      <if test="isOperate != null">
+        IS_OPERATE = #{isOperate,jdbcType=INTEGER},
+      </if>
+      <if test="stakeMark != null">
+        STAKE_MARK = #{stakeMark,jdbcType=DOUBLE},
+      </if>
+      <if test="vavWork != null">
+        VAV_WORK = #{vavWork,jdbcType=VARCHAR},
+      </if>
+      <if test="vavSecIn != null">
+        VAV_SEC_IN = #{vavSecIn,jdbcType=VARCHAR},
       </if>
       <if test="lgtd != null">
         LGTD = #{lgtd,jdbcType=DOUBLE},
@@ -221,94 +271,88 @@
       <if test="lttd != null">
         LTTD = #{lttd,jdbcType=DOUBLE},
       </if>
-      <if test="vavNm != null">
-        VAV_NM = #{vavNm,jdbcType=VARCHAR},
-      </if>
-      <if test="vavType != null">
-        VAV_TYPE = #{vavType,jdbcType=CHAR},
-      </if>
-      <if test="vavWork != null">
-        VAV_WORK = #{vavWork,jdbcType=CHAR},
-      </if>
       <if test="vavSize != null">
         VAV_SIZE = #{vavSize,jdbcType=DOUBLE},
       </if>
-      <if test="mp != null">
-        MP = #{mp,jdbcType=DOUBLE},
+      <if test="pressureLevel != null">
+        PRESSURE_LEVEL = #{pressureLevel,jdbcType=DOUBLE},
       </if>
-      <if test="ismp != null">
-        ISMP = #{ismp,jdbcType=CHAR},
+      <if test="startCondi != null">
+        START_CONDI = #{startCondi,jdbcType=VARCHAR},
       </if>
-      <if test="maxmp != null">
-        MAXMP = #{maxmp,jdbcType=VARCHAR},
-      </if>
-      <if test="szfd != null">
-        SZFD = #{szfd,jdbcType=CHAR},
+      <if test="maxDelpreStart != null">
+        MAX_DELPRE_START = #{maxDelpreStart,jdbcType=DOUBLE},
       </if>
       <if test="userType != null">
-        USER_TYPE = #{userType,jdbcType=CHAR},
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
       </if>
-      <if test="azgc != null">
-        AZGC = #{azgc,jdbcType=DOUBLE},
+      <if test="installHeight != null">
+        INSTALL_HEIGHT = #{installHeight,jdbcType=DOUBLE},
       </if>
-      <if test="isoperate != null">
-        ISOPERATE = #{isoperate,jdbcType=BIT},
+      <if test="iniOpenLevel != null">
+        INI_OPEN_LEVEL = #{iniOpenLevel,jdbcType=DOUBLE},
       </if>
-      <if test="stakemark != null">
-        STAKEMARK = #{stakemark,jdbcType=VARCHAR},
+      <if test="q != null">
+        Q = #{q,jdbcType=DOUBLE},
       </if>
-      <if test="kd != null">
-        KD = #{kd,jdbcType=DOUBLE},
+      <if test="designPressure != null">
+        DESIGN_PRESSURE = #{designPressure,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherQ != null">
-        VA_OTHER_Q = #{vaOtherQ,jdbcType=DOUBLE},
+      <if test="vavOtherSize != null">
+        VAV_OTHER_SIZE = #{vavOtherSize,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherMp != null">
-        VA_OTHER_MP = #{vaOtherMp,jdbcType=DOUBLE},
+      <if test="iniOpenlevelMin != null">
+        INI_OPENLEVEL_MIN = #{iniOpenlevelMin,jdbcType=DOUBLE},
       </if>
-      <if test="vaOtherSize != null">
-        VA_OTHER_SIZE = #{vaOtherSize,jdbcType=DOUBLE},
+      <if test="pressureWork != null">
+        PRESSURE_WORK = #{pressureWork,jdbcType=VARCHAR},
       </if>
-      <if test="nValve != null">
-        N_VALVE = #{nValve,jdbcType=INTEGER},
+      <if test="prewMaxDel != null">
+        PREW_MAX_DEL = #{prewMaxDel,jdbcType=DOUBLE},
       </if>
-      <if test="kdV0 != null">
-        KD_V0 = #{kdV0,jdbcType=DOUBLE},
+      <if test="nvavCount != null">
+        NVAV_COUNT = #{nvavCount,jdbcType=INTEGER},
       </if>
-      <if test="av != null">
-        AV = #{av,jdbcType=DOUBLE},
+      <if test="kAllOpen != null">
+        K_ALL_OPEN = #{kAllOpen,jdbcType=DOUBLE},
       </if>
-      <if test="nt != null">
-        NT = #{nt,jdbcType=VARCHAR},
+      <if test="vavSideS != null">
+        VAV_SIDE_S = #{vavSideS,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhwx.wms.entity.Valve">
     update prj_valve_b
-    set NODE_CD = #{nodeCd,jdbcType=INTEGER},
+    set DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+      BELONG_TO_PCODE = #{belongToPcode,jdbcType=VARCHAR},
+      VAV_TYPE = #{vavType,jdbcType=VARCHAR},
+      IS_OPERATE = #{isOperate,jdbcType=INTEGER},
+      STAKE_MARK = #{stakeMark,jdbcType=DOUBLE},
+      VAV_WORK = #{vavWork,jdbcType=VARCHAR},
+      VAV_SEC_IN = #{vavSecIn,jdbcType=VARCHAR},
       LGTD = #{lgtd,jdbcType=DOUBLE},
       LTTD = #{lttd,jdbcType=DOUBLE},
-      VAV_NM = #{vavNm,jdbcType=VARCHAR},
-      VAV_TYPE = #{vavType,jdbcType=CHAR},
-      VAV_WORK = #{vavWork,jdbcType=CHAR},
       VAV_SIZE = #{vavSize,jdbcType=DOUBLE},
-      MP = #{mp,jdbcType=DOUBLE},
-      ISMP = #{ismp,jdbcType=CHAR},
-      MAXMP = #{maxmp,jdbcType=VARCHAR},
-      SZFD = #{szfd,jdbcType=CHAR},
-      USER_TYPE = #{userType,jdbcType=CHAR},
-      AZGC = #{azgc,jdbcType=DOUBLE},
-      ISOPERATE = #{isoperate,jdbcType=BIT},
-      STAKEMARK = #{stakemark,jdbcType=VARCHAR},
-      KD = #{kd,jdbcType=DOUBLE},
-      VA_OTHER_Q = #{vaOtherQ,jdbcType=DOUBLE},
-      VA_OTHER_MP = #{vaOtherMp,jdbcType=DOUBLE},
-      VA_OTHER_SIZE = #{vaOtherSize,jdbcType=DOUBLE},
-      N_VALVE = #{nValve,jdbcType=INTEGER},
-      KD_V0 = #{kdV0,jdbcType=DOUBLE},
-      AV = #{av,jdbcType=DOUBLE},
-      NT = #{nt,jdbcType=VARCHAR}
-    where VAV_CD = #{vavCd,jdbcType=INTEGER}
+      PRESSURE_LEVEL = #{pressureLevel,jdbcType=DOUBLE},
+      START_CONDI = #{startCondi,jdbcType=VARCHAR},
+      MAX_DELPRE_START = #{maxDelpreStart,jdbcType=DOUBLE},
+      USER_TYPE = #{userType,jdbcType=VARCHAR},
+      INSTALL_HEIGHT = #{installHeight,jdbcType=DOUBLE},
+      INI_OPEN_LEVEL = #{iniOpenLevel,jdbcType=DOUBLE},
+      Q = #{q,jdbcType=DOUBLE},
+      DESIGN_PRESSURE = #{designPressure,jdbcType=DOUBLE},
+      VAV_OTHER_SIZE = #{vavOtherSize,jdbcType=DOUBLE},
+      INI_OPENLEVEL_MIN = #{iniOpenlevelMin,jdbcType=DOUBLE},
+      PRESSURE_WORK = #{pressureWork,jdbcType=VARCHAR},
+      PREW_MAX_DEL = #{prewMaxDel,jdbcType=DOUBLE},
+      NVAV_COUNT = #{nvavCount,jdbcType=INTEGER},
+      K_ALL_OPEN = #{kAllOpen,jdbcType=DOUBLE},
+      VAV_SIDE_S = #{vavSideS,jdbcType=DOUBLE},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
   </update>
 </mapper>
