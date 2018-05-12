@@ -160,4 +160,24 @@
       DEL_FALG = #{delFalg,jdbcType=BIT}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+   <select id="selectBylogin" parameterType="com.zhwx.wms.entity.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where USER_NAME = #{0} And
+     PASSWORD = #{1}
+  </select>
+  
+    <update id="updatePassword" parameterType="com.zhwx.wms.entity.User">
+    update sys_user
+    set 
+      PASSWORD = #{1}
+    where ID = #{0} and ((select a.PASSWORD from(select PASSWORD from sys_user where ID = #{0})a) =#{2})
+  </update>
+  
+    <select id="selectById" parameterType="com.zhwx.wms.entity.User" resultMap="BaseResultMap">
+    select PASSWORD
+    from sys_user
+    where ID=#{id,jdbcType=INTEGER}
+  </select>
 </mapper>
