@@ -8,70 +8,6 @@ var objType = {
     "bleeder": 14, "insump": 15, "outpool": 16, "coffer": 17, "mhprrp": 18, "hydturbine": 19,
     "piezometer": 20, "flow": 21, "node": 22, "ctwell": 23, "elbow": 24
 };
-//------------------从后台数据库获取设备属性值 函数封装------------------------
-function getOnlineDate(cellId, type) {
-    this.tagElements = null;
-    this.form = null;
-    this.propertyNew = null;
-    var self =this ;
-    var sendData = {
-        PRJ_TYPE: type,
-        OBJ_CD: cellId.substring(0, 8) + cellId.substring(9, 13) + cellId.substring(14, 18) + cellId.substring(19, 23) + cellId.substring(24, 36),
-    };
-    $.ajax({
-        type: 'post',
-        url: url + 'matchOrNot',
-        async: false,
-        data: {
-            OBJ_CD: cellId.substring(0, 8) + cellId.substring(9, 13) + cellId.substring(14, 18) + cellId.substring(19, 23) + cellId.substring(24, 36),
-        },
-        success: function (data) {
-            document.getElementById("valueT").disabled = "true";
-            $.ajax({
-                type: 'post',
-                url: url + 'getRealdata',
-                async: false,
-                data: sendData,
-                beforeSend: function () {
-                },
-                success: function (data) {
-                    Remove();
-                    self.tagElements = data.modify;
-                    self.form = document.getElementById("property");
-                    self.propertyNew = cell_view.model.toJSON().property;
-                    for (var i = 0; i < data.modify.length; i++) {
-                        if (data.modify[i].unit) {
-                            $("#property").append('<div class="input-group">' +
-                                '<label class="input-group-addon" for="property_data' + i + '" style="width: 5%">' + data.modify[i].name + '</label>' +
-                                '<input name="' + data.modify[i].Ename + '"type="text" class="form-control" id="property_data' + i + '" placeholder="' + data.modify[i].value + '" disabled="true">' +
-                                '<span class="input-group-addon" style="width: 5%">' + data.modify[i].unit + '</span>' +
-                                '</div>');
-                        }
-                        if (!data.modify[i].unit) {
-                            $("#property").append('<div class="input-group">' +
-                                '<label class="input-group-addon" for="property_data' + i + '"style="width: 5%">' + data.modify[i].name + '</label>' +
-                                '<input name="' + data.modify[i].Ename + '" type="text" class="form-control" id="property_data' + i + '" placeholder="' + data.modify[i].value + '" disabled="true">' +
-                                '<span class="input-group-addon" style="width: 5%"></span>' +
-                                '</div>');
-                        }
-                    }
-                    for (var i = 0; i < data.modifyLine.length; i++) {
-                        $("#property").append('<div class="input-group">' +
-                            '<label class="input-group-addon" for="property_line' + i + '" style="width: 5%">' + data.modifyLine[i].name + '</label>' +
-                            '<input type="text" class="form-control" id="property_line' + i + '" placeholder="' + data.modifyLine[i].Ename + '" disabled="true">' +
-                            '<span class="input-group-addon" style="width: 5%">' +
-                            '<button  type="button" data-toggle="modal" data-target="#onecomLine" onclick="getonlinedataline(' + i + ')">' +
-                            'Go!' +
-                            '</button>' +
-                            '</span>' +
-                            '</div>');
-                    }
-                }
-            })
-        }
-    });
-};
-
 (function(_, joint) {
 
     'use strict';
@@ -187,8 +123,6 @@ function getOnlineDate(cellId, type) {
             
             paperScroller.render().center();
             $('.paper-container').hide();
-
-            
         },
 
         // Create and populate stencil.
@@ -356,13 +290,7 @@ function getOnlineDate(cellId, type) {
             this.paper.on('element:pointerup link:options', function(cellView) {
 
                 var cell = cellView.model;
-
-                if (cell.isElement() && cell.get('type') != 'basic.Text') {
-                    document.getElementById('T_name').value = cell.get("modelType");
-                    document.getElementById('T_id').value = cell.id;
-                    document.getElementById('TA_name').value = cell.get("DEVICE_NAME");
-                }
-
+                mapTableinit(cell);
                 if (!this.selection.collection.contains(cell)) {
 
                     if (cell.isElement()) {

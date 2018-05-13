@@ -18,6 +18,7 @@ import com.zhwx.wms.Service.devService;
 
 @Controller 
 public class ctrlDev {
+	private static final String String = null;
 	//1.需要注入服务类
 	@Autowired 
 	private devService ds =  new devService();
@@ -31,7 +32,7 @@ public class ctrlDev {
 		
 		 JSONObject sjo = jo.parseObject(param);
 		 //把元件类型传给对应的服务类
-		// System.out.println(sjo.getString("modelType"));
-		 return ds.fetAllDev();
+//		 System.out.println(sjo.getString("devType"));
+		 return ds.fetAllDev(sjo.getString("devType"));
     }  
 }

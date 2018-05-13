@@ -19,10 +19,9 @@ public class devService {
 	public OutpoolMapper om;
 	@Autowired
 	public ValveMapper vm;
-	public ArrayList fetAllDev() {
-		
-		String devType = "devs.MyInsump";
+	public ArrayList fetAllDev(String devType) {
 		ArrayList al = null;
+//		System.out.println(devType);
 		//根据类型查询不同的表
 		if(devType.equals("devs.Mypipe")) al = pm.selectAll();
 		else if(devType.equals("devs.MyInsump"))al = im.selectAll();
@@ -33,7 +32,7 @@ public class devService {
 			else if(devType.equals("devs.MyValueb"))al = vm.selectByType("valve_b");
 		}
 		
-		System.out.println(  ((Intakesump)al.get(0)).getDeviceName()  );
+//		System.out.println( ((Intakesump)al.get(0)).getDeviceName());
 		return al;
 	}
 	
