@@ -22,7 +22,7 @@ App.config = App.config || {};
     App.config.stencil.shapes = {};
     App.config.stencil.shapes.lj = [{
         type: 'app.Connector',
-        modelText:'节点',
+        modelType:'节点',
         size: {
             width: 20,
             height: 20
@@ -45,7 +45,7 @@ App.config = App.config || {};
     }, 
         {
             type: 'basic.Text',
-            modelType: 'text',
+            modelType: '文本',
             size: {
                 width: 36,
                 height: 21

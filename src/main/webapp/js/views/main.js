@@ -138,7 +138,7 @@ var objType = {
                 dropAnimation: true,
                 groupsToggleButtons: true,
                 search: {
-                    '*': ['type', 'attrs/text/text', 'attrs/.label/text'],
+                    '*': ['modelType'],
                 },
                 label: "图元选择框",
                 // Use default Grid Layout
