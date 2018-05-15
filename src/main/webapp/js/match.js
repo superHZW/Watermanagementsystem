@@ -1,12 +1,12 @@
+var mycell = null;
 function mapTableinit(cell) {
+	mycell = cell;
 	$("#match-select").on('click', function() {
-		if (cell.isElement() && cell.get('type') != 'basic.Text') {
-			document.getElementById('T_name').value = cell.get("modelType");
-			document.getElementById('T_id').value = cell.id;
-			document.getElementById('TA_name').value = cell.get("DEVICE_NAME");
+		if (mycell.isElement() && mycell.get('type') != 'basic.Text') {
+			document.getElementById('T_name').value = mycell.get("modelType");
+			document.getElementById('TA_name').value = mycell.get("DEVICE_NAME");
 		}
-		var celltype = cell.get('type');
-		// console.log(celltype);
+		var celltype = mycell.get('type');
 		$.ajax({
 			url: url + "fetDev",
 			type: 'post',
@@ -32,7 +32,7 @@ function mapTableinit(cell) {
 
 	$("#mapYes").on('click', function() {
 		var selects = $('#TandD_table').bootstrapTable('getSelections')[0];
-		setattrs(selects, cell);
+		setattrs(selects, mycell);
 		$('#TandD_table').bootstrapTable('refresh');
 	});
 
